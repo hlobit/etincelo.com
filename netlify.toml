@@ -1,5 +1,6 @@
 [build]
   publish = "/public"
+  functions = './functions'
 
 [dev]
   command = "python -m http.server --directory public"
