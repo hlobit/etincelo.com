@@ -1,8 +1,5 @@
 /* eslint-disable */
 
-// // optionally configure local env vars
-if (process.env.NETLIFY_DEV) require('dotenv').config()
-
 // // details in https://css-tricks.com/using-netlify-forms-and-netlify-functions-to-build-an-email-sign-up-widget
 const fetch = require('node-fetch')
 const base64 = require('base-64');
@@ -16,14 +13,10 @@ const {
 
 exports.handler = async event => {
   try {
-    const { email, firstName, lastName } = JSON.parse(event.body);
+    const { email } = JSON.parse(event.body);
     const subscriber = {
       email_address: email,
       status: 'subscribed',
-      merge_fields: {
-        FNAME: firstName,
-        LNAME: lastName
-      },
     };
     const creds = `${MAILCHIMP_USERNAME}:${MAILCHIMP_API_KEY}`;
     const updateResponse = await fetch(

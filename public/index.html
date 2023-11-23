@@ -131,6 +131,10 @@
     /*font-size: 0.8em;*/
     padding: 0 0 3em 0;
   }
+  #inputVerifyEmail {
+    /*position: absolute;
+    left: -5000px*/
+  }
 </style>
 <header class="has-background">
   <section>
@@ -163,6 +167,26 @@
       <p>En cette fin d'année, de petites pépites sur la musique et l'histoire d'Etincelo vous attendent sur les réseaux sociaux&nbsp;!
     </article>
   </section>
+  <section>
+    <h3>La newsletter</h3>
+    <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe/newsletter-subscribe.js">
+      <div class="field">
+        <div class="control">
+          <input id="inputEmail" class="input" type="email" name="email" placeholder="Email">
+        </div>
+      </div>
+      <div class="field" aria-hidden="true">
+        <div class="control">
+          <input id="inputVerifyEmail" type="text" name="verifyEmail" placeholder="Verify email" tabindex="-1" value="" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button id="button" type="submit" class="button is-primary">Envoyer</button>
+        </div>
+      </div>
+    </form>
+  </section>
 </main>
 <footer>
   <section>
@@ -175,3 +199,31 @@
     </ul>
   </section>
 </footer>
+<script>
+  var form = document.getElementById('newsletter');
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var email = document.getElementById('inputEmail').value;
+    var verifyEmail = document.getElementById('inputVerifyEmail').value;
+    if (verifyEmail) {
+      return false;
+    }
+    submitSubscription({email})
+  });
+
+  function submitSubscription(data) {
+    fetch(form.action, {
+      method: 'post',
+      body: JSON.stringify(data)
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      var submitButton = document.getElementById('button');
+      submitButton.innerText = 'Envoyé !'
+      document.getElementById('inputFirstName').value = '';
+      document.getElementById('inputLastName').value = '';
+      document.getElementById('inputEmail').value = '';
+    });
+  };
+</script>
