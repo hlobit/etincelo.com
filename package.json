@@ -1,0 +1,13 @@
+{
+  "name": "etincelo-functions",
+  "version": "1.0.0",
+  "description": "netlify functions for etincelo",
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "crypto-js": "^4.0.0",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
