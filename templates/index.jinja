@@ -20,6 +20,9 @@
     background: rgb(102, 48, 48);
     color: #FFF
   }
+  input[type=email] {
+    background-color: #f3f3f3;
+  }
   @media (prefers-color-scheme: dark){
     body {
       background:#000
@@ -39,6 +42,9 @@
     footer {
       background: #555;
       color: unset
+    }
+    input[type=email] {
+      background-color: #555;
     }
   }
   body {
@@ -132,8 +138,32 @@
     padding: 0 0 3em 0;
   }
   #inputVerifyEmail {
-    /*position: absolute;
-    left: -5000px*/
+    position: absolute;
+    left: -5000px
+  }
+  #newsletter {
+    display: flex;
+    gap: 5px;
+  }
+  #newsletter .field.grow {
+    flex-grow: 1
+  }
+  input[type=email] {
+    box-sizing: border-box;
+    display: block;
+    height: 48px;
+    padding: 6px 16px;
+    width: 100%;
+    border: none;
+  }
+  button {
+    height: 48px;
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
   }
 </style>
 <header class="has-background">
@@ -167,9 +197,9 @@
   <section>
     <h3>La newsletter</h3>
     <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe/newsletter-subscribe.js">
-      <div class="field">
+      <div class="field grow">
         <div class="control">
-          <input id="inputEmail" class="input" type="email" name="email" placeholder="Email">
+          <input id="inputEmail" class="input" type="email" name="email" placeholder="Entrez votre adresse email pour vous inscrire..." autocomplete="off">
         </div>
       </div>
       <div class="field" aria-hidden="true">
@@ -218,9 +248,8 @@
     }).then(function(data) {
       var submitButton = document.getElementById('button');
       submitButton.innerText = 'Envoyé !'
-      document.getElementById('inputFirstName').value = '';
-      document.getElementById('inputLastName').value = '';
       document.getElementById('inputEmail').value = '';
+      submitButton.disabled = true
     });
   };
 </script>
