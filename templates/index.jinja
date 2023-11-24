@@ -23,6 +23,9 @@
   input[type=email] {
     background-color: #f3f3f3;
   }
+  #newsletters li {
+    background-color: aliceblue
+  }
   @media (prefers-color-scheme: dark){
     body {
       background:#000
@@ -44,6 +47,9 @@
       color: unset
     }
     input[type=email] {
+      background-color: #555;
+    }
+    #newsletters li {
       background-color: #555;
     }
   }
@@ -165,6 +171,24 @@
     text-align: center;
     text-decoration: none;
   }
+  #newsletters {
+    list-style-type: none;
+    padding: 0;
+  }
+  #newsletters li {
+    padding: 6px 16px;
+  }
+  #newsletters li a {
+    text-decoration: none;
+    color: unset;
+  }
+  #newsletters li p {
+    margin: 0;
+  }
+  #newsletters li p.date.type {
+    opacity: 0.3;
+    font-size: 0.7em;
+  }
 </style>
 <header class="has-background">
   <section>
@@ -213,6 +237,16 @@
         </div>
       </div>
     </form>
+    <ul id="newsletters">
+      {% for newsletter in newsletters %}
+      <li>
+        <a href="{{ newsletter['archive_url_long'] }}" target="_blank">
+          <p class="date type">{{ newsletter['send_time'] }}</p>
+          <p class="subtitle">{{ newsletter['subject'] }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
   </section>
 </main>
 <footer>

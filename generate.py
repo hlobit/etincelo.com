@@ -1,5 +1,7 @@
 import os
 
+from datetime import datetime
+
 import requests
 from requests.auth import HTTPBasicAuth
 from jinja2 import Template, Environment, FileSystemLoader
@@ -17,15 +19,15 @@ def fetch_newsletters():
         auth=HTTPBasicAuth(config['MAILCHIMP_USERNAME'], config['MAILCHIMP_API_KEY']),
     )
     return [{
-      'send_time': e['send_time'],
+      'send_time': datetime.fromisoformat(e['send_time']).strftime('%d/%m/%Y'),
       'subject': e['settings']['subject_line'],
       'archive_url_long': e['long_archive_url'],
     } for e in r.json()['campaigns'] if not e['recipients']['segment_text']]
 
 def main():
-    print(fetch_newsletters())
+    newsletters = fetch_newsletters()
 
-    output_from_parsed_template = index_template.render()
+    output_from_parsed_template = index_template.render(newsletters=newsletters[:4])
     with open("public/index.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
