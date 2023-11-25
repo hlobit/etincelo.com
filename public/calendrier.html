@@ -223,7 +223,7 @@
   </section>
   <section>
     <h3>Pour recevoir le calendrier par email&nbsp;:</h3>
-    <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe/newsletter-subscribe.js">
+    <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe">
       <div class="field grow">
         <div class="control">
           <input id="inputEmail" class="input" type="email" name="email" placeholder="Entrez votre adresse email pour vous inscrire..." autocomplete="off">
@@ -272,7 +272,8 @@
 
   function submitSubscription(data) {
     fetch(form.action, {
-      method: 'post',
+      method: form.method,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(function(response) {
       return response.json();
