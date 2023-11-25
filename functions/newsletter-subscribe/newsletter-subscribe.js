@@ -8,19 +8,22 @@ const {
   MAILCHIMP_USERNAME,
   MAILCHIMP_API_KEY,
   MAILCHIMP_DATA_CENTER,
-  MAILCHIMP_LIST_ID
+  MAILCHIMP_LIST_ID,
+  MAILCHIMP_CALENDAR_LIST_ID,
 } = process.env
 
 exports.handler = async event => {
   try {
-    const { email } = JSON.parse(event.body);
+    const { email, segment } = JSON.parse(event.body);
+    const listId = segment === 'calendar' ? MAILCHIMP_CALENDAR_LIST_ID : MAILCHIMP_LIST_ID
+    console.log('LIST_ID: ' + listId);
     const subscriber = {
       email_address: email,
       status: 'subscribed',
     };
     const creds = `${MAILCHIMP_USERNAME}:${MAILCHIMP_API_KEY}`;
     const updateResponse = await fetch(
-      `https://${MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members/${CryptoJS.MD5(email).toString()}`,
+      `https://${MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0/lists/${listId}/members/${CryptoJS.MD5(email).toString()}`,
       {
         method: 'PUT',
         headers: {
@@ -43,7 +46,7 @@ exports.handler = async event => {
       };
     };
     const insertResponse = await fetch(
-      `https://${MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members/`,
+      `https://${MAILCHIMP_DATA_CENTER}.api.mailchimp.com/3.0/lists/${listId}/members/`,
       {
         method: 'POST',
         headers: {

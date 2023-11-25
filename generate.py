@@ -9,6 +9,7 @@ from dotenv import dotenv_values
 
 env = Environment(loader=FileSystemLoader('templates'))
 index_template = env.get_template('index.jinja')
+calendrier_template = env.get_template('calendrier.jinja')
 
 config = dotenv_values('.env')
 
@@ -31,6 +32,11 @@ def main():
     with open("public/index.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
+
+    output_from_parsed_template = calendrier_template.render()
+    with open("public/calendrier.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/calendrier.html")
 
 if __name__ == '__main__':
     main()
