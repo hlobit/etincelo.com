@@ -21,10 +21,16 @@
     color: #FFF
   }
   input[type=email] {
-    background-color: #f3f3f3;
+    background-color: #e1e1e1;
   }
-  #newsletters li {
+  #newsletters {
     background-color: aliceblue
+  }
+  article.highlight {
+    background-color: beige;
+  }
+  footer a {
+    color: #fff
   }
   @media (prefers-color-scheme: dark){
     body {
@@ -49,8 +55,14 @@
     input[type=email] {
       background-color: #555;
     }
-    #newsletters li {
+    #newsletters {
       background-color: #555;
+    }
+    article.highlight {
+      background-color: #555;
+    }
+    #inputEmail {
+      background-color: #8a8a8a
     }
   }
   body {
@@ -139,9 +151,14 @@
       padding: 4px 16px;
     }
   }
+  article {
+    padding: 0.1em 1em 0.1em 1em;
+    margin-top: 1em
+  }
   footer {
     /*font-size: 0.8em;*/
-    padding: 0 0 3em 0;
+    margin-top: 1em;
+    padding: 1em 0 3em 0;
   }
   #inputVerifyEmail {
     position: absolute;
@@ -171,21 +188,21 @@
     text-align: center;
     text-decoration: none;
   }
-  #newsletters {
+  #newsletters ul {
     list-style-type: none;
     padding: 0;
   }
-  #newsletters li {
-    padding: 6px 16px;
+  #newsletters ul li {
+    padding: 0.3em 0;
   }
-  #newsletters li a {
+  #newsletters ul li a {
     text-decoration: none;
     color: unset;
   }
-  #newsletters li p {
+  #newsletters ul li p {
     margin: 0;
   }
-  #newsletters li p.date.type {
+  #newsletters ul li p.date.type {
     opacity: 0.3;
     font-size: 0.7em;
   }
@@ -215,13 +232,23 @@
       <aside>Groupe de <em>pop louange franciscaine</em>, en activité depuis 2013.</aside>
       <!--<p><small>Pour en savoir plus, rendez-vous la page <a href="">Qui sommes nous&nbsp;?</a></small>-->
     </header>
-    <article>
+    <article class="highlight">
       <h2>Nous célébrons nos 10 ans&nbsp;!</h2>
       <p>Il y a tout juste dix ans, de retour d'un rassemblement à Assise, Etincelo est né.
-      <p>En cette fin d'année, de petites pépites sur la musique et l'histoire d'Etincelo vous attendent sur les réseaux sociaux&nbsp;!
+      <p>En cette fin d'année, <strong>nous vous proposons d'avancer vers Noël</strong> accompagnés par nos textes et mélodies de ces 10 dernières années. De petites pépites sur les chants et sur notre histoire seront parsemées sur le chemin&nbsp;!
+      <p>Tout est expliqué dans la vidéo ci-dessous&nbsp;:
+      <div style="display: flex; justify-content: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/UH6xsVqTVRQ?si=mMa-yKVgyNRX5n1v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <p>Ce chemin "Etince10" vous est proposé <strong>via 3 canaux</strong>&nbsp;:
+      <ul>
+        <li>directement <strong>dans votre boîte mail</strong> en vous inscrivant <a href="calendrier.html">sur cette page</a>
+        <li><a href="https://instagram.com/etincelomusic" target="_blank">sur Instagram</a> - la page est nouvelle, n'hésitez pas à nous suivre&nbsp;!
+        <li><a href="https://facebook.com/etincelo" target="_blank">sur Facebook</a>
+      </ul>
+      <p>Nous avons hâte de commencer l'aventure avec vous&nbsp;!
     </article>
   </section>
   <section>
+    <article id="newsletters">
     <h3>La newsletter</h3>
     <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe">
       <div class="field grow">
@@ -240,7 +267,7 @@
         </div>
       </div>
     </form>
-    <ul id="newsletters">
+    <ul>
       
       <li>
         <a href="https://mailchi.mp/d303c14e0561/les-petites-emplettes-d-etincelo" target="_blank">
@@ -271,16 +298,17 @@
       </li>
       
     </ul>
+    </article>
   </section>
 </main>
 <footer>
   <section>
-    <p>Vous souhaitez nous soutenir&nbsp;?</p>
+    <p>Quelques moyens pour soutenir notre mission</p>
     <ul>
-      <li>Priez pour notre mission
-      <li>IBAN
-      <li>CDs
-      <li>Abonnez-vous à notre newsletter et sur nos réseaux sociaux
+      <li>Prier pour nous
+      <li>Faire un don pour financer nos projets&nbsp;:<br/>IBAN: FR98 2004 1010 1111 4198 6Y03 270
+      <li>Acheter et offrir nos CDs
+      <li>S'abonner à notre newsletter et nos réseaux sociaux&nbsp;:<br><a href="https://instagram.com/etincelomusic" target="_blank">Instagram</a> - <a href="https://facebook.com/etincelo" target="_blank">Facebook</a> - <a href="https://youtube.com/etincelo" target="_blank">YouTube</a>
     </ul>
   </section>
 </footer>
