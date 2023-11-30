@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>{% block title %}{% endblock %}</title>
+<style>
+  body {
+    background: ivory
+  }
+  .has-background {
+    background-image: url(/images/photo-1430799800631-b8de6ce1fad5.jpg);
+    background-position: 50% 20%;
+    background-size: cover;
+  }
+  nav {
+    background: rgba(255,255,255,0.9);
+  }
+  footer {
+    background: rgb(102, 48, 48);
+    color: #FFF
+  }
+  input[type=email] {
+    background-color: #e1e1e1;
+  }
+  #newsletters {
+    background-color: aliceblue
+  }
+  article.highlight {
+    background-color: beige;
+  }
+  footer a {
+    color: #fff
+  }
+  @media (prefers-color-scheme: dark){
+    body {
+      background:#000
+    }
+    .has-background {
+      background-image: unset;
+    }
+    nav {
+      background: rgba(0,0,0,0.9);
+    }
+    svg.etincelo-logo .etincelo-main {
+      fill: #ffebcd;
+    }
+    ul.etincelo-menu {
+      border: 1px solid;
+    }
+    footer {
+      background: #555;
+      color: unset
+    }
+    input[type=email] {
+      background-color: #555;
+    }
+    #newsletters {
+      background-color: #555;
+    }
+    article.highlight {
+      background-color: #555;
+    }
+    #inputEmail {
+      background-color: #8a8a8a
+    }
+  }
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    margin:0 auto;
+    font:1.2em/1.62 sans-serif
+  }
+  body > header {
+    padding: 1em 0 0 0;
+  }
+  section {
+    margin: 0 auto;
+    padding: 0 .62em;
+    max-width:40em;
+  }
+  main {
+    flex: 1;
+  }
+  h1,h2,h3 {
+    line-height:1.2
+  }
+  @media print{
+    body{
+      max-width:none
+    }
+  }
+  svg.etincelo-logo {
+    width: 100%;
+    height: 96px;
+  }
+  svg.etincelo-logo .etincelo-highlight {
+    fill: #710000;
+  }
+  ul.etincelo-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    list-style-type: none;
+    margin: 1em 0 0 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  ul.etincelo-menu li a {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  ul.etincelo-menu li a {
+    color: unset;
+  }
+  ul.etincelo-menu li.active a {
+    background-color: #FFD298;
+    color: #000
+  }
+  ul.etincelo-menu li.disabled {
+    flex: 1;
+    width: 100%;
+    text-align: center;
+  }
+  ul.etincelo-menu li.disabled a {
+    opacity: 20%;
+  }
+  ul.etincelo-menu li.active a {
+    background-color: #FFD298;
+    color: #000
+  }
+  ul.etincelo-menu li:not(.active) a:hover {
+    background-color: #FFE1BA;
+    color: #000
+  }
+  @media all and (max-width: 768px) {
+    ul.etincelo-menu {
+      flex-direction: column;
+    }
+    ul.etincelo-menu li {
+      width: 100%;
+    }
+    ul.etincelo-menu li a {
+      display: block;
+      padding: 4px 16px;
+    }
+  }
+  article {
+    padding: 0.1em 1em 0.1em 1em;
+    margin-top: 1em
+  }
+  footer {
+    /*font-size: 0.8em;*/
+    margin-top: 1em;
+    padding: 1em 0 3em 0;
+  }
+  #inputVerifyEmail {
+    position: absolute;
+    left: -5000px
+  }
+  #newsletter {
+    display: flex;
+    gap: 5px;
+  }
+  #newsletter .field.grow {
+    flex-grow: 1
+  }
+  input[type=email] {
+    box-sizing: border-box;
+    display: block;
+    height: 48px;
+    padding: 6px 16px;
+    width: 100%;
+    border: none;
+  }
+  button {
+    height: 48px;
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
+  }
+  #newsletters ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  #newsletters ul li {
+    padding: 0.3em 0;
+  }
+  #newsletters ul li a {
+    text-decoration: none;
+    color: unset;
+  }
+  #newsletters ul li p {
+    margin: 0;
+  }
+  #newsletters ul li p.date.type {
+    opacity: 0.3;
+    font-size: 0.7em;
+  }
+</style>
+<header class="has-background">
+  <section>
+    {% include 'logo.jinja' %}
+  </section>
+  <nav>
+    <section>
+      {% block menu %}
+      <ul class="etincelo-menu">
+        <li class="active"><a href="index.html">Accueil</a></li>
+        <li><a href="https://boutique.etincelo.com" target="_blank">Boutique</a></li>
+        <li class="disabled"><a href="#">Les chants (à venir)</a></li>
+        <li><a href="calendrier.html">Calendrier de l'Avent</a></li>
+      </ul>
+      {% endblock %}
+    </section>
+  </nav>
+</header>
+<main>
+  {% block content %}{% endblock %}
+</main>
+<footer>
+  {% block footer %}
+  <section>
+    <p>Quelques moyens pour soutenir notre mission</p>
+    <ul>
+      <li>Prier pour nous
+      <li>Faire un don pour financer nos projets&nbsp;:<br/>IBAN: FR98 2004 1010 1111 4198 6Y03 270
+      <li>Acheter et offrir nos CD&nbsp;:<br><a href="https://boutique.etincelo.com" target="_blank">boutique.etincelo.com</a>
+      <li>S'abonner à notre newsletter et nos réseaux sociaux&nbsp;:<br><a href="https://instagram.com/etincelomusic" target="_blank">Instagram</a> - <a href="https://facebook.com/etincelo" target="_blank">Facebook</a> - <a href="https://youtube.com/etincelo" target="_blank">YouTube</a>
+    </ul>
+  </section>
+  {% endblock %}
+</footer>
+
+{% block script %}{% endblock %}
