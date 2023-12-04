@@ -8,15 +8,14 @@ from requests.auth import HTTPBasicAuth
 from jinja2 import Template, Environment, FileSystemLoader
 from dotenv import dotenv_values
 
+songs = pathlib.Path('songs')
 env = Environment(loader=FileSystemLoader('templates'))
-index_template = env.get_template('index.jinja')
-calendrier_template = env.get_template('calendrier.jinja')
 
 config = dotenv_values('.env')
 
 def fetch_newsletters(*, list_id, count=10):
     r = requests.get(
-        f"https://{config['MAILCHIMP_DATA_CENTER']}.api.mailchimp.com/3.0/campaigns?list_id={list_id}&status=sent&sort_field=send_time&sort_dir=DESC&count={count*2}",
+        f"https://{config['MAILCHIMP_DATA_CENTER']}.api.mailchimp.com/3.0/campaigns?list_id={list_id}&status=sent,schedule&sort_field=send_time&sort_dir=DESC&count={count*2}",
         headers={'Accept': 'application/json'},
         auth=HTTPBasicAuth(config['MAILCHIMP_USERNAME'], config['MAILCHIMP_API_KEY']),
     )
