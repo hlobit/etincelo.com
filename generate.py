@@ -39,7 +39,7 @@ def fetch_content(*, campaign_id):
     soup = bs4.BeautifulSoup(r.json()['html'], "html.parser")
     for block in soup.select('[data-block-id]'):
         block_id = block.attrs['data-block-id']
-        if block_id not in ('1', '2', '7', '8', '16', '21', '28', '32', '36', '37', '41', '44', '46',):
+        if block_id not in ('-13', '1', '2', '7', '8', '16', '21', '28', '32', '36', '37', '41', '44', '46',):
             continue
         block.extract()
     return str(soup.body) \
