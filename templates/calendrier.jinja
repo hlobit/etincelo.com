@@ -2,16 +2,34 @@
 
 {% block title %}Etincelo | Calendrier de l'Avent{% endblock %}
 
+{% block style %}
+<style>
+article.post {
+  border: 1px solid #ccc;
+  font-size: 0.8em;
+}
+</style>
+{% endblock %}
+
 {% block menu %}
       <ul class="etincelo-menu">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="https://boutique.etincelo.com" target="_blank">Boutique</a></li>
-        <li class="disabled"><a href="#">Les chants (à venir)</a></li>
+        <li class="disabled flex-1"><a href="#">Les chants (à venir)</a></li>
         <li class="active"><a href="calendrier.html">Calendrier de l'Avent</a></li>
       </ul>
 {% endblock %}
 
 {% block content %}
+  <section>
+    <article class="highlight">
+      <h2>Le calendrier de l'Avent Etince10</h2>
+      <p>En cette fin d'année, <strong>nous vous proposons d'avancer vers Noël</strong> accompagnés par nos textes et mélodies de ces 10 dernières années. De petites pépites sur les chants et sur notre histoire seront parsemées sur le chemin&nbsp;!
+      <p>🎁
+      <br/>Plus qu’un simple calendrier, nous vous proposons un parcours, à travers trois grands thèmes, en se basant sur le sens de chacun des chants produits ces 10 dernières années. Nous voyons vraiment ce parcours comme un cadeau reçu du Seigneur pour notre édification à chacun.<br/><strong>Cadeau pour nous, cadeau pour vous.</strong>
+      <p>Bonne route vers l’étable !
+    </article>
+  </section>
   <section>
     <article id="newsletters">
     <h3>Pour recevoir le calendrier par email&nbsp;:</h3>
@@ -35,7 +53,7 @@
     <ul id="newsletters">
       {% for newsletter in newsletters %}
       <li>
-        <a href="{{ newsletter['archive_url_long'] }}" target="_blank">
+        <a href="#{{ newsletter['id'] }}">
           <p class="date type">{{ newsletter['send_time'] }}</p>
           <p class="subtitle">{{ newsletter['subject'] }}</p>
         </a>
@@ -43,6 +61,13 @@
       {% endfor %}
     </ul>
     </article>
+  </section>
+  <section>
+    {% for content in contents %}
+      <article class="post" id="{{ content['id'] }}">
+        {{ content['html']|safe }}
+      </article>
+    {% endfor %}
   </section>
 {% endblock %}
 
