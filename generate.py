@@ -42,6 +42,8 @@ def fetch_content(*, campaign_id):
         if block_id not in ('-13', '1', '2', '7', '8', '16', '21', '28', '32', '36', '37', '41', '44', '46',):
             continue
         block.extract()
+    for block in soup.select('colgroup'):
+        block.extract()
     return str(soup.body) \
         .replace('background-color: #ffffff;', '') \
         .replace('background-color:#ffffff;', '') \
@@ -49,7 +51,10 @@ def fetch_content(*, campaign_id):
         .replace('background-color:white;', '') \
         .replace('background-color:white', '') \
         .replace('max-width:660px', '') \
-        .replace('padding-right:24px;padding-left:24px', '')
+        .replace('padding-right:24px;padding-left:24px', '') \
+        .replace('padding-top:20px;padding-bottom:20px;', '') \
+        .replace('border-top:20px solid transparent', '') \
+        .replace('border-style:solid;border-color:rgba(36, 28, 21, 0.3);border-width:1px', '')
 
 def main():
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
