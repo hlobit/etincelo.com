@@ -10,7 +10,7 @@ h2 {
 
 dl.properties {
  display: grid;
- margin: 0;
+ margin: 1em 0;
  grid-auto-columns: max-content;
  font-size: 0.8em;
 }
@@ -102,6 +102,28 @@ article.links ul {
  color:#009e86;
  font-weight:700;
  padding-right:.5em
+}
+
+.audio-link {
+ display: block;
+ height: 2rem;
+ width: 2rem;
+ margin: 1em 0;
+}
+.audio-button {
+ display: block;
+ overflow: visible;
+ padding: 0 0 100%;
+ position: relative;
+ height: 0;
+ width: 100%;
+}
+.audio-button > * {
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ top: 0;
+ left: 0;
 }
 </style>
 {% endblock %}

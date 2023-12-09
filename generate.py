@@ -69,6 +69,7 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
 
+    audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
     titles = {}
     for path in songpaths:
@@ -76,6 +77,7 @@ def main():
         m = re.search('<h2 id="title">(.*)</h2>', content)
         title = m.group(1)
         titles[path.stem] = title
+        content = content.replace('%AUDIO_BUTTON%', audio_button)
         output_from_parsed_template = env.get_template('chant.jinja').render(title=title, content=content)
         with open(f'public/{path.stem}.html', "w") as f:
             f.write(output_from_parsed_template)
