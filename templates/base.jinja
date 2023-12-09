@@ -203,6 +203,41 @@
     opacity: 0.3;
     font-size: 0.7em;
   }
+
+  ul.soc {
+    list-style: none;
+    text-align: center;
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+  }
+  ul.soc li {
+    display: inline-block;
+    margin: 0.8rem;
+  }
+  ul.soc a, ul.soc svg {
+    display: block;
+    fill: white;
+  }
+  ul.soc a {
+    height: 2.6rem;
+    width: 2.6rem;
+  }
+  ul.soc .ir {
+    display: block;
+    overflow: visible;
+    padding: 0 0 100%;
+    position: relative;
+    height: 0;
+    width: 100%;
+  }
+  ul.soc .ir > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 </style>
 {% block style %}{% endblock %}
 <header class="has-background">
@@ -233,8 +268,9 @@
       <li>Prier pour nous
       <li>Faire un don pour financer nos projets&nbsp;:<br/>IBAN: FR98 2004 1010 1111 4198 6Y03 270
       <li>Acheter et offrir nos CD&nbsp;:<br><a href="https://boutique.etincelo.com" target="_blank">boutique.etincelo.com</a>
-      <li>S'abonner à notre newsletter et nos réseaux sociaux&nbsp;:<br><a href="https://instagram.com/etincelomusic" target="_blank">Instagram</a> - <a href="https://facebook.com/etincelo" target="_blank">Facebook</a> - <a href="https://youtube.com/etincelo" target="_blank">YouTube</a>
+      <li>S'abonner à notre newsletter et nos réseaux sociaux
     </ul>
+    {% include 'filtered-social-links.jinja' %}
   </section>
   {% endblock %}
 </footer>
