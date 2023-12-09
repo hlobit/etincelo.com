@@ -46,6 +46,7 @@ def fetch_content(*, campaign_id):
         block.extract()
     for block in soup.select('colgroup'):
         block.extract()
+    # TWEAKS
     return str(soup.body) \
         .replace('background-color: #ffffff;', '') \
         .replace('background-color:#ffffff;', '') \
@@ -56,7 +57,9 @@ def fetch_content(*, campaign_id):
         .replace('padding-right:24px;padding-left:24px', '') \
         .replace('padding-top:20px;padding-bottom:20px;', '') \
         .replace('border-top:20px solid transparent', '') \
-        .replace('border-style:solid;border-color:rgba(36, 28, 21, 0.3);border-width:1px', '')
+        .replace('border-style:solid;border-color:rgba(36, 28, 21, 0.3);border-width:1px', '') \
+        .replace('Avec chant', 'Avec le chant')
+
 
 def main():
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
