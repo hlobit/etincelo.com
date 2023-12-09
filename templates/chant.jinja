@@ -1,0 +1,139 @@
+{% extends "base.jinja" %}
+
+{% block title %}Etincelo | Chants | {{ title }} {% endblock %}
+
+{% block style %}
+<style>
+h2 {
+ font-variant: small-caps;
+}
+
+dl.properties {
+ display: grid;
+ margin: 0;
+ grid-auto-columns: max-content;
+ font-size: 0.8em;
+}
+dl.properties dt {
+ grid-column: 1;
+ text-align: end;
+}
+dl.properties dt::after {
+ content: " :";
+}
+dl.properties dd {
+ grid-column: 2;
+ margin-left: 1em;
+}
+
+p.context {
+ font-size: 0.9em;
+ font-style: italic
+}
+
+article h3 {
+ opacity: 60%;
+ font-variant: small-caps;
+ font-size: 1em;
+ border-bottom: solid 1px;
+ padding-bottom: 0.4em;
+}
+
+article.video iframe { 
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+article.links {
+  font-size: 0.9em;
+}
+article.links ul {
+  font-size: 0.8em;
+}
+
+.lyrics {
+ white-space:pre
+}
+.lyrics h1 {
+ display:none
+}
+.lyrics.mode-text .chord {
+ display:none!important
+}
+.lyrics .empty-line {
+ display:block;
+ height:1em
+}
+.lyrics>.chord-sheet>.paragraph:not(:empty) {
+ margin-bottom:1.5em
+}
+.lyrics>.chord-sheet>.paragraph.chorus {
+ border-left:3px solid #000;
+ padding-left:1em
+}
+.lyrics>.chord-sheet>.paragraph.chorus .lyrics,
+.lyrics>.chord-sheet>.paragraph.prechorus .lyrics {
+ font-weight:600
+}
+.lyrics>.chord-sheet>.paragraph.bridge .lyrics {
+ font-style:italic
+}
+.lyrics>.chord-sheet>.paragraph>.row {
+ padding-bottom:.2em;
+ -ms-flex-wrap:wrap;
+ flex-wrap:wrap
+}
+.lyrics>.chord-sheet>.paragraph>.row,
+.lyrics>.chord-sheet>.paragraph>.row>.word {
+ display:-webkit-box;
+ display:-ms-flexbox;
+ display:flex;
+ -webkit-box-align:end;
+ -ms-flex-align:end;
+ align-items:flex-end
+}
+.lyrics>.chord-sheet>.paragraph>.row>.word,
+.lyrics>.chord-sheet>.paragraph>.row>.word>.column {
+ padding:0;
+ -webkit-box-flex:0;
+ -ms-flex-positive:0;
+ flex-grow:0
+}
+.lyrics>.chord-sheet>.paragraph>.row>.word>.column .chord {
+ color:#009e86;
+ font-weight:700;
+ padding-right:.5em
+}
+</style>
+{% endblock %}
+
+{% block menu %}
+      <ul class="etincelo-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="https://boutique.etincelo.com" target="_blank">Boutique</a></li>
+        <li class="active flex-1"><a href="chants.html">Les chants</a></li>
+        <li><a href="calendrier.html">Calendrier de l'Avent</a></li>
+      </ul>
+{% endblock %}
+
+{% block content %}
+  <section>
+    {{ content|safe }}
+  </section>
+{% endblock %}
+
+{% block script %}
+<script>
+// Create a reference for the Wake Lock.
+let wakeLock = null;
+
+// create an async function to request a wake lock
+try {
+  navigator.wakeLock.request("screen")
+    .then(wake);
+  console.log('wake lock acquired!')
+} catch (err) {
+  // The Wake Lock request has failed - usually system related, such as battery.
+  console.error(`${err.name}, ${err.message}`);
+}
+</script>
+{% endblock %}

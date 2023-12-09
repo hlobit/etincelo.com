@@ -1,4 +1,6 @@
 import os
+import pathlib
+import re
 
 from datetime import datetime
 
@@ -59,10 +61,27 @@ def fetch_content(*, campaign_id):
 def main():
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
 
-    output_from_parsed_template = index_template.render(newsletters=newsletters)
+    output_from_parsed_template = env.get_template('index.jinja').render(newsletters=newsletters)
     with open("public/index.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
+
+    songpaths = songs.glob('*.html')
+    titles = {}
+    for path in songpaths:
+        content = path.read_text()
+        m = re.search('<h2 id="title">(.*)</h2>', content)
+        title = m.group(1)
+        titles[path.stem] = title
+        output_from_parsed_template = env.get_template('chant.jinja').render(title=title, content=content)
+        with open(f'public/{path.stem}.html', "w") as f:
+            f.write(output_from_parsed_template)
+        print("Generated : ", f'public/{path.stem}.html')
+
+    output_from_parsed_template = env.get_template('chants.jinja').render(titles=titles)
+    with open(f'public/chants.html', "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", f'public/chants.html')
 
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25)
     contents = [{ 'id': n['id'], 'html': fetch_content(campaign_id=n['campaign_id'])} for n in newsletters]
@@ -71,6 +90,7 @@ def main():
     with open("public/calendrier.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/calendrier.html")
+
 
 if __name__ == '__main__':
     main()

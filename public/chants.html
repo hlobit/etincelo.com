@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Etincelo | La pop louange franciscaine</title>
+<title>Etincelo | La pop louange franciscaine | Les chants</title>
 <style>
   body {
     background: ivory
@@ -49,17 +49,14 @@
       border: 1px solid;
     }
     footer {
-      background: #555;
+      background-color: #292929;
       color: unset
     }
-    input[type=email] {
-      background-color: #555;
-    }
     #newsletters {
-      background-color: #555;
+      background-color: #292929;
     }
     article.highlight {
-      background-color: #555;
+      background-color: #292929;
     }
     #inputEmail {
       background-color: #8a8a8a
@@ -206,6 +203,48 @@
     opacity: 0.3;
     font-size: 0.7em;
   }
+
+  ul.soc {
+    list-style: none;
+    text-align: center;
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+  }
+  ul.soc li {
+    display: inline-block;
+    margin: 0.8rem;
+  }
+  ul.soc a, ul.soc svg {
+    display: block;
+    fill: white;
+  }
+  ul.soc a {
+    height: 2.6rem;
+    width: 2.6rem;
+  }
+  ul.soc .ir {
+    display: block;
+    overflow: visible;
+    padding: 0 0 100%;
+    position: relative;
+    height: 0;
+    width: 100%;
+  }
+  ul.soc .ir > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+</style>
+
+<style>
+ul.songlist {
+  font-variant: small-caps;
+  list-style: none
+}
 </style>
 
 <header class="has-background">
@@ -218,12 +257,12 @@
   <nav>
     <section>
       
-      <ul class="etincelo-menu">
-        <li class="active"><a href="index.html">Accueil</a></li>
-        <li><a href="https://boutique.etincelo.com" target="_blank">Boutique</a></li>
-        <li class="flex-1"><a href="chants.html">Les chants</a></li>
-        <li><a href="calendrier.html">Calendrier de l'Avent</a></li>
-      </ul>
+    <ul class="etincelo-menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="https://boutique.etincelo.com" target="_blank">Boutique</a></li>
+      <li class="active flex-1"><a href="chants.html">Les chants</a></li>
+      <li><a href="calendrier.html">Calendrier de l'Avent</a></li>
+    </ul>
 
     </section>
   </nav>
@@ -232,76 +271,20 @@
   
   <section>
     <header>
-      <h1>Nous sommes Etincelo.</h1>
-      <aside>Groupe de <em>pop louange franciscaine</em>, en activité depuis 2013.</aside>
-      <!--<p><small>Pour en savoir plus, rendez-vous la page <a href="">Qui sommes nous&nbsp;?</a></small>-->
+      <h1>Les chants.</h1>
+      <aside>Sur cette page, retrouvez tous ce qu'on a rassemblé pour vous sur nos chants. Nous sommes heureux de vous partager autant que possible, pour agrémenter votre prière personnelle, vos temps de louanges et les célébrations liturgiques.</aside>
+      <aside>Pour toute demande concernant nos chants, n'hésitez pas à nous envoyer un message à .</aside>
     </header>
     <article class="highlight">
-      <h2>Nous célébrons nos 10 ans&nbsp;!</h2>
-      <p>Il y a tout juste dix ans, de retour d'un rassemblement à Assise, Etincelo est né.
-      <p>En cette fin d'année, <strong>nous vous proposons d'avancer vers Noël</strong> accompagnés par nos textes et mélodies de ces 10 dernières années. De petites pépites sur les chants et sur notre histoire seront parsemées sur le chemin&nbsp;!
-      <p>Tout est expliqué dans la vidéo ci-dessous&nbsp;:
-      <div style="display: flex; justify-content: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/UH6xsVqTVRQ?si=mMa-yKVgyNRX5n1v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-      <p>Ce chemin "Etince10" vous est proposé <strong>via 3 canaux</strong>&nbsp;:
+      <ul class="songlist">
+        
+        <li>
+          <a href="nous-irons-dans-la-joie.html">
+            Nous irons dans la joie
+          </a>
+        </li>
+        
       <ul>
-        <li>directement <strong>dans votre boîte mail</strong> en vous inscrivant <a href="calendrier.html">sur cette page</a>
-        <li><a href="https://instagram.com/etincelomusic" target="_blank">sur Instagram</a> - la page est nouvelle, n'hésitez pas à nous suivre&nbsp;!
-        <li><a href="https://facebook.com/etincelo" target="_blank">sur Facebook</a>
-      </ul>
-      <p>Nous avons hâte de commencer l'aventure avec vous&nbsp;!
-    </article>
-  </section>
-  <section>
-    <article id="newsletters">
-    <h3>La newsletter</h3>
-    <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe">
-      <div class="field grow">
-        <div class="control">
-          <input id="inputEmail" class="input" type="email" name="email" placeholder="Entrez votre adresse email pour vous inscrire..." autocomplete="off">
-        </div>
-      </div>
-      <div class="field" aria-hidden="true">
-        <div class="control">
-          <input id="inputVerifyEmail" type="text" name="verifyEmail" placeholder="Verify email" tabindex="-1" value="" autocomplete="off">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <button id="button" type="submit" class="button is-primary">Envoyer</button>
-        </div>
-      </div>
-    </form>
-    <ul>
-      
-      <li>
-        <a href="https://mailchi.mp/5f631bd4f45a/lancement-etince10" target="_blank">
-          <p class="date type">26/11/2023</p>
-          <p class="subtitle">Un Avent avec Etince10 🎶</p>
-        </a>
-      </li>
-      
-      <li>
-        <a href="https://mailchi.mp/d303c14e0561/les-petites-emplettes-d-etincelo" target="_blank">
-          <p class="date type">12/12/2020</p>
-          <p class="subtitle">Les petites emplettes d'Etincelo 📦</p>
-        </a>
-      </li>
-      
-      <li>
-        <a href="https://mailchi.mp/f36e0c14263e/les-noces-eternelles" target="_blank">
-          <p class="date type">11/04/2020</p>
-          <p class="subtitle">🎺 Sortez les trompettes : les noces éternelles sont là !</p>
-        </a>
-      </li>
-      
-      <li>
-        <a href="https://mailchi.mp/6ea19bb97a56/tous-invites-aux-noces-eternelles" target="_blank">
-          <p class="date type">05/04/2020</p>
-          <p class="subtitle">🎬 Tous invités : aux noces éternelles !</p>
-        </a>
-      </li>
-      
-    </ul>
     </article>
   </section>
 
@@ -314,38 +297,49 @@
       <li>Prier pour nous
       <li>Faire un don pour financer nos projets&nbsp;:<br/>IBAN: FR98 2004 1010 1111 4198 6Y03 270
       <li>Acheter et offrir nos CD&nbsp;:<br><a href="https://boutique.etincelo.com" target="_blank">boutique.etincelo.com</a>
-      <li>S'abonner à notre newsletter et nos réseaux sociaux&nbsp;:<br><a href="https://instagram.com/etincelomusic" target="_blank">Instagram</a> - <a href="https://facebook.com/etincelo" target="_blank">Facebook</a> - <a href="https://youtube.com/etincelo" target="_blank">YouTube</a>
+      <li>S'abonner à notre newsletter et nos réseaux sociaux
     </ul>
+    <ul class="soc">
+  <li>
+    <a class="icon-8 email" href="mailto:contact@etincelo.com" target="_blank" title="Email">
+      <div class="ir">
+        <svg viewbox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="512" height="512">
+          <path d="M101.3 141.6v228.9h0.3 308.4 0.8V141.6H101.3zM375.7 167.8l-119.7 91.5 -119.6-91.5H375.7zM127.6 194.1l64.1 49.1 -64.1 64.1V194.1zM127.8 344.2l84.9-84.9 43.2 33.1 43-32.9 84.7 84.7L127.8 344.2 127.8 344.2zM384.4 307.8l-64.4-64.4 64.4-49.3V307.8z"></path>
+        </svg>
+      </div>
+    </a>
+  </li>
+  <li>
+    <a class="icon-15 instagram" href="https://instagram.com/etincelomusic" target="_blank" title="Instagram">
+      <div class="ir">
+        <svg viewbox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="512" height="512">
+          <path d="M256 109.3c47.8 0 53.4 0.2 72.3 1 17.4 0.8 26.9 3.7 33.2 6.2 8.4 3.2 14.3 7.1 20.6 13.4 6.3 6.3 10.1 12.2 13.4 20.6 2.5 6.3 5.4 15.8 6.2 33.2 0.9 18.9 1 24.5 1 72.3s-0.2 53.4-1 72.3c-0.8 17.4-3.7 26.9-6.2 33.2 -3.2 8.4-7.1 14.3-13.4 20.6 -6.3 6.3-12.2 10.1-20.6 13.4 -6.3 2.5-15.8 5.4-33.2 6.2 -18.9 0.9-24.5 1-72.3 1s-53.4-0.2-72.3-1c-17.4-0.8-26.9-3.7-33.2-6.2 -8.4-3.2-14.3-7.1-20.6-13.4 -6.3-6.3-10.1-12.2-13.4-20.6 -2.5-6.3-5.4-15.8-6.2-33.2 -0.9-18.9-1-24.5-1-72.3s0.2-53.4 1-72.3c0.8-17.4 3.7-26.9 6.2-33.2 3.2-8.4 7.1-14.3 13.4-20.6 6.3-6.3 12.2-10.1 20.6-13.4 6.3-2.5 15.8-5.4 33.2-6.2C202.6 109.5 208.2 109.3 256 109.3M256 77.1c-48.6 0-54.7 0.2-73.8 1.1 -19 0.9-32.1 3.9-43.4 8.3 -11.8 4.6-21.7 10.7-31.7 20.6 -9.9 9.9-16.1 19.9-20.6 31.7 -4.4 11.4-7.4 24.4-8.3 43.4 -0.9 19.1-1.1 25.2-1.1 73.8 0 48.6 0.2 54.7 1.1 73.8 0.9 19 3.9 32.1 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19.1 0.9 25.2 1.1 73.8 1.1s54.7-0.2 73.8-1.1c19-0.9 32.1-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4 0.9-19.1 1.1-25.2 1.1-73.8s-0.2-54.7-1.1-73.8c-0.9-19-3.9-32.1-8.3-43.4 -4.6-11.8-10.7-21.7-20.6-31.7 -9.9-9.9-19.9-16.1-31.7-20.6 -11.4-4.4-24.4-7.4-43.4-8.3C310.7 77.3 304.6 77.1 256 77.1L256 77.1z"></path>
+          <path d="M256 164.1c-50.7 0-91.9 41.1-91.9 91.9s41.1 91.9 91.9 91.9 91.9-41.1 91.9-91.9S306.7 164.1 256 164.1zM256 315.6c-32.9 0-59.6-26.7-59.6-59.6s26.7-59.6 59.6-59.6 59.6 26.7 59.6 59.6S288.9 315.6 256 315.6z"></path>
+          <circle cx="351.5" cy="160.5" r="21.5"></circle>
+        </svg>
+      </div>
+    </a>
+  </li>
+  <li>
+    <a class="icon-28 youtube" href="https://youtube.com/etincelo" target="_blank" title="YouTube">
+      <div class="ir">
+        <svg viewbox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="512" height="512">
+          <path d="M422.6 193.6c-5.3-45.3-23.3-51.6-59-54 -50.8-3.5-164.3-3.5-215.1 0 -35.7 2.4-53.7 8.7-59 54 -4 33.6-4 91.1 0 124.8 5.3 45.3 23.3 51.6 59 54 50.9 3.5 164.3 3.5 215.1 0 35.7-2.4 53.7-8.7 59-54C426.6 284.8 426.6 227.3 422.6 193.6zM222.2 303.4v-94.6l90.7 47.3L222.2 303.4z"></path>
+        </svg>
+      </div>
+    </a>
+  </li>
+  <li>
+    <a class="icon-10 facebook" href="https://facebook.com/etincelo" target="_blank" title="Facebook">
+      <div class="ir">
+        <svg viewbox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="512" height="512">
+          <path d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z"></path>
+        </svg>
+      </div>
+    </a>
+  </li>
+</ul>
   </section>
   
 </footer>
 
-
-<script>
-  var form = document.getElementById('newsletter');
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    var email = document.getElementById('inputEmail').value;
-    var verifyEmail = document.getElementById('inputVerifyEmail').value;
-    if (verifyEmail) {
-      return false;
-    }
-    submitSubscription({email})
-  });
-
-  function submitSubscription(data) {
-    fetch(form.action, {
-      method: form.method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function(response) {
-      return response.json();
-    }).then(function(data) {
-      var submitButton = document.getElementById('button');
-      submitButton.innerText = 'Envoyé !'
-      document.getElementById('inputEmail').value = '';
-      submitButton.disabled = true
-    });
-  };
-</script>
