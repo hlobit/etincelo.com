@@ -58,6 +58,10 @@ def fetch_content(*, campaign_id):
         .replace('padding-top:20px;padding-bottom:20px;', '') \
         .replace('border-top:20px solid transparent', '') \
         .replace('border-style:solid;border-color:rgba(36, 28, 21, 0.3);border-width:1px', '') \
+        .replace(' ;', '&nbsp;;') \
+        .replace(' :', '&nbsp;:') \
+        .replace(' ?', '&nbsp;?') \
+        .replace(' !', '&nbsp;!') \
         .replace('Avec chant', 'Avec le chant')
 
 
