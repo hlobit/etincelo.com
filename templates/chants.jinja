@@ -6,7 +6,28 @@
 <style>
 ul.songlist {
   font-variant: small-caps;
-  list-style: none
+  list-style: none;
+  padding: 0;
+}
+ul.songlist li {
+  padding: 0.3em;
+}
+ul.songlist li:not(:first-child) {
+  border-top: 1px solid #dbdbdb;
+}
+ul.songlist li a {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  color: unset
+}
+ul.songlist li a:hover {
+  color: unset
+}
+ul.songlist li a:before {
+  font-weight: 900;
+  content: "🎵";
+  padding-right: 16px;
 }
 </style>
 {% endblock %}
@@ -24,8 +45,10 @@ ul.songlist {
   <section>
     <header>
       <h1>Les chants.</h1>
-      <aside>Sur cette page, retrouvez tous ce qu'on a rassemblé pour vous sur nos chants. Nous sommes heureux de vous partager autant que possible, pour agrémenter votre prière personnelle, vos temps de louanges et les célébrations liturgiques.</aside>
-      <aside>Pour toute demande concernant nos chants, n'hésitez pas à nous envoyer un message à .</aside>
+      <p>Sur cette page, retrouvez tous ce qu'on a rassemblé pour vous sur nos chants. Nous sommes heureux de vous partager autant que possible sur ceux-ci, pour agrémenter votre prière personnelle, vos temps de louanges et vos célébrations liturgiques.</>
+      <aside>
+        <p><small>Pour toute demande <em>autre</em> concernant nos chants, n'hésitez pas à nous envoyer un message à notre adresse <a href="mailto:contact@etincelo.com">contact@etincelo.com</a>.</small></p>
+      </aside>
     </header>
     <article class="highlight">
       <ul class="songlist">

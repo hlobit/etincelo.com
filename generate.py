@@ -76,7 +76,7 @@ def main():
     audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
     titles = {}
-    for path in songpaths:
+    for path in sorted(songpaths):
         content = path.read_text()
         m = re.search('<h2 id="title">(.*)</h2>', content)
         title = m.group(1)

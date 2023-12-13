@@ -9,6 +9,12 @@
   fill: #fff;
  }
 }
+
+section.song header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
 h2 {
  font-variant: small-caps;
 }
@@ -31,6 +37,11 @@ dl.properties dd {
  margin-left: 1em;
 }
 
+p.context:before {
+  font-weight: 900;
+  content: "🥁";
+  padding-right: 16px;
+}
 p.context {
  font-size: 0.9em;
  font-style: italic
@@ -143,7 +154,7 @@ article.links ul {
 {% endblock %}
 
 {% block content %}
-  <section>
+  <section class="song">
     {{ content|safe }}
   </section>
 {% endblock %}
