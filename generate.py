@@ -62,7 +62,8 @@ def fetch_content(*, campaign_id):
         .replace(' :', '&nbsp;:') \
         .replace(' ?', '&nbsp;?') \
         .replace(' !', '&nbsp;!') \
-        .replace('width="564"/>', 'width="564" loading="lazy"/>') \
+        .replace('src="https://mcusercontent.com', 'loading="lazy" src="https://mcusercontent.com') \
+        .replace('src="https://storage.googleapis.com', 'loading="lazy" src="https://storage.googleapis.com') \
         .replace('Avec chant', 'Avec le chant')
 
 
