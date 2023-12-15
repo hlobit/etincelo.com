@@ -62,6 +62,7 @@ def fetch_content(*, campaign_id):
         .replace(' :', '&nbsp;:') \
         .replace(' ?', '&nbsp;?') \
         .replace(' !', '&nbsp;!') \
+        .replace('width="564"/>', 'width="564" loading="lazy"/>') \
         .replace('Avec chant', 'Avec le chant')
 
 
