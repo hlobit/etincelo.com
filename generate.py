@@ -63,6 +63,7 @@ def fetch_content(*, campaign_id):
         .replace(' :', '&nbsp;:') \
         .replace(' ?', '&nbsp;?') \
         .replace(' !', '&nbsp;!') \
+        .replace('’', "'") \
         .replace('src="https://mcusercontent.com', 'loading="lazy" src="https://mcusercontent.com') \
         .replace('src="https://storage.googleapis.com', 'loading="lazy" src="https://storage.googleapis.com') \
         .replace('Avec chant', 'Avec le chant')
@@ -79,11 +80,13 @@ def main():
     audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
     titles = {}
+    paths = {}
     for path in sorted(songpaths):
         content = path.read_text()
         m = re.search('<h2 id="title">(.*)</h2>', content)
         title = m.group(1)
         titles[path.stem] = title
+        paths[title] = path.stem
         content = content.replace('%AUDIO_BUTTON%', audio_button)
         output_from_parsed_template = env.get_template('chant.jinja').render(title=title, content=content)
         with open(f'public/{path.stem}.html', "w") as f:
@@ -97,6 +100,11 @@ def main():
 
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25)
     contents = [{ 'id': n['id'], 'html': fetch_content(campaign_id=n['campaign_id'])} for n in newsletters]
+
+    for content in contents:
+        s = re.search('🎧 Chant&nbsp;: ([^<]*)', content['html'])
+        replacement = s.group(0).replace(s.group(1), f'<a href="/{paths[s.group(1)]}">{s.group(1)}</a>')
+        content['html'] = content['html'].replace(s.group(0), replacement)
 
     output_from_parsed_template = env.get_template('calendrier.jinja').render(newsletters=newsletters, contents=contents)
     with open("public/calendrier.html", "w") as f:
