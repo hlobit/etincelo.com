@@ -1,6 +1,7 @@
 import os
 import pathlib
 import re
+import concurrent.futures
 
 from datetime import datetime
 
@@ -68,6 +69,15 @@ def fetch_content(*, campaign_id):
         .replace('src="https://storage.googleapis.com', 'loading="lazy" src="https://storage.googleapis.com') \
         .replace('Avec chant', 'Avec le chant')
 
+def fetch_contents(*campaign_ids):
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        future_to_campaign_id = {executor.submit(fetch_content, campaign_id=campaign_id): campaign_id for campaign_id in campaign_ids}
+        for future in concurrent.futures.as_completed(future_to_campaign_id):
+            campaign_id = future_to_campaign_id[future]
+            try:
+                yield campaign_id, future.result()
+            except Exception as exc:
+                yield campaign_id, exc
 
 def main():
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
@@ -99,12 +109,13 @@ def main():
     print("Generated : ", f'public/chants.html')
 
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25)
-    contents = [{ 'id': n['id'], 'html': fetch_content(campaign_id=n['campaign_id'])} for n in newsletters]
+    campaigns = {n['campaign_id']: n['id'] for n in newsletters}
+    contents = {campaigns[campaign_id]: content for campaign_id, content in fetch_contents(*campaigns.keys())}
 
-    for content in contents:
-        s = re.search('🎧 Chant&nbsp;: ([^<]*)', content['html'])
+    for newsletter_id in contents:
+        s = re.search('🎧 Chant&nbsp;: ([^<]*)', contents[newsletter_id])
         replacement = s.group(0).replace(s.group(1), f'<a href="/{paths[s.group(1)]}">{s.group(1)}</a>')
-        content['html'] = content['html'].replace(s.group(0), replacement)
+        contents[newsletter_id] = contents[newsletter_id].replace(s.group(0), replacement)
 
     output_from_parsed_template = env.get_template('calendrier.jinja').render(newsletters=newsletters, contents=contents)
     with open("public/calendrier.html", "w") as f:

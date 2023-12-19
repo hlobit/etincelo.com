@@ -70,9 +70,9 @@ article.post p {
     </article>
   </section>
   <section>
-    {% for content in contents %}
-      <article class="post" id="{{ content['id'] }}">
-        {{ content['html']|safe }}
+    {% for newsletter in newsletters %}
+      <article class="post" id="{{ newsletter['id'] }}">
+        {{ contents[newsletter['id']]|safe }}
       </article>
     {% endfor %}
   </section>
