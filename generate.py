@@ -108,6 +108,11 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", f'public/chants.html')
 
+    output_from_parsed_template = env.get_template('qui-sommes-nous.jinja').render()
+    with open("public/qui-sommes-nous.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/qui-sommes-nous.html")
+
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25)
     campaigns = {n['campaign_id']: n['id'] for n in newsletters}
     contents = {campaigns[campaign_id]: content for campaign_id, content in fetch_contents(*campaigns.keys())}
