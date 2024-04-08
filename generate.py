@@ -87,6 +87,16 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
 
+    output_from_parsed_template = env.get_template('message-20240407.jinja').render()
+    with open(f'public/message-20240407.html', "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", f'public/message-20240407.html')
+
+    output_from_parsed_template = env.get_template('insta-20240408.jinja').render()
+    with open(f'public/insta-20240408.html', "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", f'public/insta-20240408.html')
+
     audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
     titles = {}
@@ -107,11 +117,6 @@ def main():
     with open(f'public/chants.html', "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", f'public/chants.html')
-
-    output_from_parsed_template = env.get_template('message-20240407.jinja').render()
-    with open(f'public/message-20240407.html', "w") as f:
-        f.write(output_from_parsed_template)
-    print("Generated : ", f'public/message-20240407.html')
 
     output_from_parsed_template = env.get_template('qui-sommes-nous.jinja').render()
     with open("public/qui-sommes-nous.html", "w") as f:
