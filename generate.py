@@ -16,7 +16,7 @@ env = Environment(loader=FileSystemLoader('templates'))
 
 config = dotenv_values('.env')
 
-def fetch_newsletters(*, list_id, count=10):
+def fetch_newsletters(*, list_id, count=10, match=None):
     r = requests.get(
         f"https://{config['MAILCHIMP_DATA_CENTER']}.api.mailchimp.com/3.0/campaigns?list_id={list_id}&status=sent,schedule&sort_field=send_time&sort_dir=DESC&count={count*2}",
         headers={'Accept': 'application/json'},
@@ -31,7 +31,8 @@ def fetch_newsletters(*, list_id, count=10):
       'archive_url_long': e['long_archive_url'],
     } for e in r.json()['campaigns']
             if not e['recipients']['segment_text']
-            and not e['settings']['subject_line'].startswith('Rappel :')][:count]
+            and not e['settings']['subject_line'].startswith('Rappel :')
+            and (not match or match(e))][:count]
 
 def fetch_content(*, campaign_id):
     r = requests.get(
@@ -80,22 +81,25 @@ def fetch_contents(*campaign_ids):
                 yield campaign_id, exc
 
 def main():
+    other_contents = [
+        'message-20240407',
+        'insta-20240408',
+        'newsletter-20240430',
+        'parcours-20240501',
+    ]
+
+    for item in other_contents:
+        output_from_parsed_template = env.get_template(f'{item}.jinja').render()
+        with open(f'public/{item}.html', 'w') as f:
+            f.write(output_from_parsed_template)
+        print('Generated : ', f'public/{item}.html')
+
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
 
     output_from_parsed_template = env.get_template('index.jinja').render(newsletters=newsletters)
     with open("public/index.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
-
-    output_from_parsed_template = env.get_template('message-20240407.jinja').render()
-    with open(f'public/message-20240407.html', "w") as f:
-        f.write(output_from_parsed_template)
-    print("Generated : ", f'public/message-20240407.html')
-
-    output_from_parsed_template = env.get_template('insta-20240408.jinja').render()
-    with open(f'public/insta-20240408.html', "w") as f:
-        f.write(output_from_parsed_template)
-    print("Generated : ", f'public/insta-20240408.html')
 
     audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
@@ -123,7 +127,7 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/qui-sommes-nous.html")
 
-    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25)
+    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25, match=lambda e: e['settings']['title'].startswith('Jour '))
     campaigns = {n['campaign_id']: n['id'] for n in newsletters}
     contents = {campaigns[campaign_id]: content for campaign_id, content in fetch_contents(*campaigns.keys())}
 
