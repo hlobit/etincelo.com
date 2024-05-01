@@ -1,0 +1,50 @@
+{% extends "base.jinja" %}
+
+{% block title %}Etincelo | Parcours Nazaréenne{% endblock %}
+
+{% block style %}
+<style>
+article.highlight {
+  font-size: 0.8em;
+}
+article.post {
+  border: 1px solid #ccc;
+  font-size: 0.8em;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <article class="highlight">
+      <h2>Le parcours de mai <em>Nazaréenne</em></h2>
+      <p>Lors du mois de mai 2024, pour progresser ensemble et avec Marie en ce mois qui lui est dédié, nous vous proposons un parcours <em>Nazaréenne</em>&nbsp;!
+      <p>Tous les 3 jours, nous dévoilerons <strong>un extrait d'un chant de l'album <em>Nazaréenne</em></strong> dont le financement est en cours <a href="//ulule.com/etincelo-un-nouvel-album-avec-marie" target="_blank">sur Ulule <strong>jusqu'au 17 mai</strong></a>, et la sortie prévue le 31 mai.
+      <p>Cet extrait sera publié avec <strong>un petit contenu pour nourrir notre prière</strong>, sur cette page et sur les réseaux sociaux.
+      <p>Si vous êtes abonnée, abonné à notre newsletter, nous vous enverrons <strong>un petit récapitulatif une fois par semaine</strong>. Si vous souhaitez recevoir les contenus au fur et à mesure, c'est-à-dire tous les 3 jours, nous publions aussi les contenus <strong>sur un groupe WhatsApp</strong> que vous pouvez rejoindre <a href="https://chat.whatsapp.com/CZSa4guJpO1LhJFWEw2Cgp" target="_blank">en cliquant ici</a>.
+      <p>Quelle joie de vous emmener… <strong>avec elle</strong>&nbsp;!
+      <p>Restez avec nous&nbsp;! 📻
+    </article>
+  </section>
+  <section>
+    <article id="newsletters">
+    <ul id="posts">
+      {% for post in posts %}
+      <li>
+        <a href="#{{ post['id'] }}">
+          <p class="date type">{{ post['send_time'] }}</p>
+          <p class="subtitle">{{ post['subject'] }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    </article>
+  </section>
+  <section>
+    {% for post in posts %}
+      <article class="post" id="{{ post['id'] }}">
+        {{ post['contents']|safe }}
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}

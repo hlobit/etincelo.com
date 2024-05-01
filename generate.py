@@ -12,6 +12,7 @@ from jinja2 import Template, Environment, FileSystemLoader
 from dotenv import dotenv_values
 
 songs = pathlib.Path('songs')
+templates = pathlib.Path('templates')
 env = Environment(loader=FileSystemLoader('templates'))
 
 config = dotenv_values('.env')
@@ -85,7 +86,6 @@ def main():
         'message-20240407',
         'insta-20240408',
         'newsletter-20240430',
-        'parcours-20240501',
     ]
 
     for item in other_contents:
@@ -93,13 +93,6 @@ def main():
         with open(f'public/{item}.html', 'w') as f:
             f.write(output_from_parsed_template)
         print('Generated : ', f'public/{item}.html')
-
-    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
-
-    output_from_parsed_template = env.get_template('index.jinja').render(newsletters=newsletters)
-    with open("public/index.html", "w") as f:
-        f.write(output_from_parsed_template)
-    print("Generated : ", "public/index.html")
 
     audio_button = env.get_template('audio-button.jinja').render()
     songpaths = songs.glob('*.html')
@@ -112,23 +105,49 @@ def main():
         titles[path.stem] = title
         paths[title] = path.stem
         content = content.replace('%AUDIO_BUTTON%', audio_button)
-        output_from_parsed_template = env.get_template('chant.jinja').render(title=title, content=content)
+        output_from_parsed_template = env.get_template('chant.jinja').render(selected='chants', title=title, content=content)
         with open(f'public/{path.stem}.html', "w") as f:
             f.write(output_from_parsed_template)
         print("Generated : ", f'public/{path.stem}.html')
 
-    output_from_parsed_template = env.get_template('chants.jinja').render(titles=titles)
+    output_from_parsed_template = env.get_template('chants.jinja').render(selected='chants', titles=titles)
     with open(f'public/chants.html', "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", f'public/chants.html')
 
-    output_from_parsed_template = env.get_template('qui-sommes-nous.jinja').render()
+    output_from_parsed_template = env.get_template('qui-sommes-nous.jinja').render(selected='qui-sommes-nous')
     with open("public/qui-sommes-nous.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/qui-sommes-nous.html")
 
-    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25, match=lambda e: e['settings']['title'].startswith('Jour '))
-    campaigns = {n['campaign_id']: n['id'] for n in newsletters}
+    templatepaths = templates.glob('parcours-nazareenne/*.jinja')
+    nazareenne_posts = []
+    for item in sorted(templatepaths):
+        path = str(item).removeprefix('templates/')
+        contents = env.get_template(path).render()
+        date = item.stem
+        m = re.search('<h3>(.*)</h3>', contents)
+        title = m.group(1)
+        nazareenne_posts.append({
+            'id': date,
+            'send_time': datetime.strptime(date, '%Y%m%d').strftime('%d/%m/%Y'),
+            'subject': title,
+            'contents': contents,
+        })
+    output_from_parsed_template = env.get_template('parcours-nazareenne.jinja').render(selected='parcours-nazareenne', posts=nazareenne_posts)
+    with open("public/parcours-nazareenne.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/parcours-nazareenne.html")
+
+    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
+
+    output_from_parsed_template = env.get_template('index.jinja').render(selected='index', newsletters=newsletters)
+    with open("public/index.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/index.html")
+
+    etince10_posts = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25, match=lambda e: e['settings']['title'].startswith('Jour '))
+    campaigns = {n['campaign_id']: n['id'] for n in etince10_posts}
     contents = {campaigns[campaign_id]: content for campaign_id, content in fetch_contents(*campaigns.keys())}
 
     for newsletter_id in contents:
@@ -136,7 +155,7 @@ def main():
         replacement = s.group(0).replace(s.group(1), f'<a href="/{paths[s.group(1)]}">{s.group(1)}</a>')
         contents[newsletter_id] = contents[newsletter_id].replace(s.group(0), replacement)
 
-    output_from_parsed_template = env.get_template('calendrier.jinja').render(newsletters=newsletters, contents=contents)
+    output_from_parsed_template = env.get_template('calendrier.jinja').render(selected='calendrier', posts=etince10_posts, contents=contents)
     with open("public/calendrier.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/calendrier.html")
