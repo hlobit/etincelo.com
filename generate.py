@@ -122,7 +122,7 @@ def main():
 
     templatepaths = templates.glob('parcours-nazareenne/*.jinja')
     nazareenne_posts = []
-    for item in sorted(templatepaths):
+    for item in sorted(templatepaths, reverse=True):
         path = str(item).removeprefix('templates/')
         contents = env.get_template(path).render()
         date = item.stem
