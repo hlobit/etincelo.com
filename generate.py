@@ -129,6 +129,8 @@ def main():
         'message-20240407',
         'insta-20240408',
         'newsletter-20240430',
+        'annulation-commande',
+        'confirmation-commande',
     ]
 
     for item in other_contents:
