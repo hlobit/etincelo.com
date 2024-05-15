@@ -11,17 +11,60 @@ from requests.auth import HTTPBasicAuth
 from jinja2 import Template, Environment, FileSystemLoader
 from dotenv import dotenv_values
 
+# FROM: https://github.com/luyves/kmeans-dominant-colours
+import numpy as np
+import pandas as pd
+
+from PIL import Image
+
+from sklearn.cluster import KMeans
+
+def resize(imgfile, basewidth=200):
+    img = Image.open(imgfile, 'r')
+    wpercent = (basewidth / float(img.size[0]))
+    hsize = int((float(img.size[1]) * float(wpercent)))
+    img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+    return np.array(img)
+
+def hexify(palette):
+    return['#%s' % ''.join(('%02x' % round(p) for p in colour)) for colour in palette]
+
+def KMeansModel(imgfile, n_clusters=3):
+    # Loading and resizing the selected image. It is necessary to reshape the numpy array to train our model.
+    img = resize(imgfile, 200)
+    img_arr = img.reshape((img.shape[0] * img.shape[1], img.shape[2]))
+    cluster = KMeans(n_clusters=n_clusters, init='random', n_init=10, max_iter=300, random_state=0)
+    cluster.fit_predict(img_arr)
+    return cluster, img
+
+def palette(imgfile, n_clusters=3):
+    cluster, img = KMeansModel(imgfile, n_clusters=n_clusters)
+    colours = np.int_(cluster.cluster_centers_.round())
+    return hexify(colours)
+#
+
 songs = pathlib.Path('songs')
 templates = pathlib.Path('templates')
 env = Environment(loader=FileSystemLoader('templates'))
 
 config = dotenv_values('.env')
 
-def fetch_newsletters(*, list_id, count=10, match=None):
+def fetch_newsletters(*, list_id, count=10, since_send_time=None, match=None):
+    params = {
+            'list_id': list_id,
+            'status': 'sent,schedule',
+            'sort_field': 'send_time',
+            'sort_dir': 'DESC',
+    }
+    if count:
+        params['count'] = count*2
+    if since_send_time:
+        params['since_send_time'] = since_send_time
     r = requests.get(
-        f"https://{config['MAILCHIMP_DATA_CENTER']}.api.mailchimp.com/3.0/campaigns?list_id={list_id}&status=sent,schedule&sort_field=send_time&sort_dir=DESC&count={count*2}",
+        f"https://{config['MAILCHIMP_DATA_CENTER']}.api.mailchimp.com/3.0/campaigns",
         headers={'Accept': 'application/json'},
         auth=HTTPBasicAuth(config['MAILCHIMP_USERNAME'], config['MAILCHIMP_API_KEY']),
+        params=params,
     )
     # NOTE: if there is segment_text, the campaign target was not all subscribers, omit them
     return [{
@@ -120,6 +163,45 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/qui-sommes-nous.html")
 
+    items = [
+        {
+            'button_id': 'LKM9L3J27J3QC',
+            'palette': palette('public/images/leepn.artwork.png'),
+            'template': 'articles/leepn.jinja',
+            'price': 8,
+            'available': True,
+        },
+        {
+            'button_id': 'Z54DR2AW8SV6N',
+            'palette': palette('public/images/uatj.artwork.png'),
+            'template': 'articles/uatj.jinja',
+            'price': 15,
+            'available': True,
+        },
+        {
+            'button_id': 'JVTAM7ZCNJLVJ',
+            'palette': [c[:7] for c in palette('public/images/leepn-uatj.pack.png')],
+            'template': 'articles/leepn-uatj.jinja',
+            'price': 20,
+            'available': True,
+        },
+        {
+            'button_id': 'RGWLWRP8CWLAG',
+            'palette': palette('public/images/tapm.artwork.png'),
+            'template': 'articles/tapm.jinja',
+            'price': 4,
+            'available': False,
+        }
+    ]
+    articles = []
+    for item in items:
+        contents = env.get_template(item['template']).render(item=item)
+        articles.append({**item, 'contents': contents})
+    output_from_parsed_template = env.get_template('boutique.jinja').render(selected='boutique', articles=articles)
+    with open("public/boutique.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/boutique.html")
+
     templatepaths = templates.glob('parcours-nazareenne/*.jinja')
     nazareenne_posts = []
     for item in sorted(templatepaths, reverse=True):
@@ -139,7 +221,7 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/parcours-nazareenne.html")
 
-    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=4)
+    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=10, since_send_time='2023-10-04T00:00:00+00:00')
 
     output_from_parsed_template = env.get_template('index.jinja').render(selected='index', newsletters=newsletters)
     with open("public/index.html", "w") as f:

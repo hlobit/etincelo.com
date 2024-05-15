@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Etincelo | La pop louange franciscaine | Les chants</title>
+<title>Etincelo | Boutique</title>
 <style>
   body {
     background: ivory
@@ -255,30 +255,33 @@
 </style>
 
 <style>
-ul.songlist {
-  font-variant: small-caps;
-  list-style: none;
-  padding: 0;
+article {
+  display: flex;
+  gap: 2em;
 }
-ul.songlist li {
-  padding: 0.3em;
+@media all and (max-width: 768px) {
+  article {
+    flex-direction: column;
+    gap: 0;
+  }
 }
-ul.songlist li:not(:first-child) {
-  border-top: 1px solid #dbdbdb;
+.shop-article-view {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  padding: 4em 0;
+  align-items: center;
 }
-ul.songlist li a {
-  display: block;
-  cursor: pointer;
-  text-decoration: none;
-  color: unset
+@media all and (max-width: 768px) {
+  .shop-article-view {
+    padding: 0 0 1em 0;
+  }
 }
-ul.songlist li a:hover {
-  color: unset
+.shop-article-view .picture-container {
+  flex-grow: 1
 }
-ul.songlist li a:before {
-  font-weight: 900;
-  content: "🎵";
-  padding-right: 16px;
+.shop-article-view .picture-container img {
+  max-width: 100%
 }
 </style>
 
@@ -307,8 +310,8 @@ ul.songlist li a:before {
       <ul class="etincelo-menu">
         <li class=""><a href="index.html">Accueil</a></li>
         <li class=""><a href="qui-sommes-nous.html">Qui sommes-nous&nbsp;?</a></li>
-        <li class=""><a href="boutique.html">Boutique</a></li>
-        <li class="active"><a href="chants.html">Les chants</a></li>
+        <li class="active"><a href="boutique.html">Boutique</a></li>
+        <li class=""><a href="chants.html">Les chants</a></li>
       </ul>
     </section>
   </nav>
@@ -326,168 +329,127 @@ ul.songlist li a:before {
   
   <section>
     <header>
-      <h1>Les chants.</h1>
-      <p><strong>Nous avons rassemblé pour vous sur cette page, pour chaque chant, les paroles, les accords, les liens audio et vidéo et quelques informations.</strong>
-      <p>Nous sommes heureux de vous partager tous ces éléments, pour agrémenter votre prière personnelle, vos temps de louanges et vos célébrations liturgiques.</>
-      <aside>
-        <p><small>Pour toute demande <em>autre</em> concernant nos chants, n'hésitez pas à nous envoyer un message à l'adresse <a href="mailto:contact@etincelo.com">contact@etincelo.com</a>.</small></p>
-      </aside>
+      <!--<h1>Enchantés, nous sommes Etincelo.</h1>-->
+      <p><small><em>Les frais de ports de votre commande sont inclus pour tout envoi vers la France ou la Belgique.</em></small>
+      <p><small><strong>NB: il n’y a pas besoin d’avoir un compte PayPal pour procéder au paiement.</strong></small>
     </header>
-    <article class="highlight">
-      <ul class="songlist">
-        
-        <li>
-          <a href="au-monde.html">
-            Au monde
-          </a>
-        </li>
-        
-        <li>
-          <a href="bienheureuse-marie.html">
-            Bienheureuse Marie
-          </a>
-        </li>
-        
-        <li>
-          <a href="esprit-de-dieu.html">
-            Esprit de Dieu
-          </a>
-        </li>
-        
-        <li>
-          <a href="hosanna.html">
-            Hosanna
-          </a>
-        </li>
-        
-        <li>
-          <a href="je-le-recois.html">
-            Je le reçois
-          </a>
-        </li>
-        
-        <li>
-          <a href="jesus-le-chemin.html">
-            Jésus le chemin
-          </a>
-        </li>
-        
-        <li>
-          <a href="l-emmanuel-est-pour-nous.html">
-            L'Emmanuel est pour nous
-          </a>
-        </li>
-        
-        <li>
-          <a href="les-amis-de-dieu.html">
-            Les amis de Dieu
-          </a>
-        </li>
-        
-        <li>
-          <a href="les-noces-eternelles.html">
-            Les noces éternelles
-          </a>
-        </li>
-        
-        <li>
-          <a href="mon-appel.html">
-            Mon appel
-          </a>
-        </li>
-        
-        <li>
-          <a href="notre-pere.html">
-            Notre Père
-          </a>
-        </li>
-        
-        <li>
-          <a href="nous-irons-dans-la-joie.html">
-            Nous irons dans la joie
-          </a>
-        </li>
-        
-        <li>
-          <a href="o-jesus.html">
-            Ô Jésus
-          </a>
-        </li>
-        
-        <li>
-          <a href="o-tres-sainte.html">
-            Ô très sainte
-          </a>
-        </li>
-        
-        <li>
-          <a href="par-amour-de-ton-amour.html">
-            Par amour de ton Amour
-          </a>
-        </li>
-        
-        <li>
-          <a href="sachons-aimer.html">
-            Sachons aimer
-          </a>
-        </li>
-        
-        <li>
-          <a href="t-aimer-encore.html">
-            T'aimer encore
-          </a>
-        </li>
-        
-        <li>
-          <a href="ta-joie.html">
-            Ta joie
-          </a>
-        </li>
-        
-        <li>
-          <a href="ton-amour-pour-moi.html">
-            Ton amour pour moi
-          </a>
-        </li>
-        
-        <li>
-          <a href="ton-royaume.html">
-            Ton Royaume
-          </a>
-        </li>
-        
-        <li>
-          <a href="tu-marches-avec-moi.html">
-            Tu marches avec moi
-          </a>
-        </li>
-        
-        <li>
-          <a href="venu-dans-la-nuit.html">
-            Venu dans la nuit
-          </a>
-        </li>
-        
-        <li>
-          <a href="venus-l-adorer-tout-petit.html">
-            Venus l'adorer / Tout-petit
-          </a>
-        </li>
-        
-        <li>
-          <a href="vers-l-etable.html">
-            Vers l'étable
-          </a>
-        </li>
-        
-        <li>
-          <a href="vous-les-rois.html">
-            Vous les rois
-          </a>
-        </li>
-        
-      <ul>
-    </article>
+    
+      <article style="background: #2a3042">
+  <div class="shop-article-main">
+    <h4 style="color: #b78d4a">L'Emmanuel est pour nous.</h4>
+    
+      <div style="height:10px;background: #f3f0e8;"></div>
+    
+      <div style="height:10px;background: #b78d4a;"></div>
+    
+    <div style="color: #f3f0e8">
+      <p class="shop-article-description"><small>En 2017, Etincelo fête Noël en musique avec «&nbsp;L’Emmanuel est pour nous&nbsp;».<br>On y retrouve tous les chants de Noël originaux d’Etincelo, comme <em>Vous les rois</em>, <em>Vers l’étable</em> ou <em>Venus l’adorer</em>.</small>
+      <dl class="shop-article-properties">
+        <dt>Prix</dt>
+        <dd style="margin-left: 0">8€</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="shop-article-view">
+    <div class="picture-container">
+      <img src="/images/leepn.artwork.png" alt="L'Emmanuel est pour nous">
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <button style="background: #f3f0e8;color: #2a3042" type="submit">Ajouter à mon panier</button>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="LKM9L3J27J3QC">
+      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
+    </form>
+  </div>
+</article>
+    
+      <article style="background: #e0e9e6">
+  <div class="shop-article-main">
+    <h4 style="color: #5aa9b6">Unis à ta joie.</h4>
+    
+      <div style="height:10px;background: #187790;"></div>
+    
+      <div style="height:10px;background: #5aa9b6;"></div>
+    
+    <div style="color: #187790">
+      <p class="shop-article-description"><small>En 2015, Etincelo travaille sur un album 13 titres « Unis à ta joie ».<br>Ce disque aborde les thèmes de l’intimité avec Dieu et de la joie franciscaine.<br>Vous y retrouverez entre autres les chants <em>Esprit de Dieu</em> et <em>Au monde</em>.</small>
+      <dl class="shop-article-properties">
+        <dt>Prix</dt>
+        <dd style="margin-left: 0">15€</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="shop-article-view">
+    <div class="picture-container">
+      <img src="/images/uatj.artwork.png" alt="Unis à ta joie">
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <button style="background: #187790;color: #e0e9e6" type="submit">Ajouter à mon panier</button>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="Z54DR2AW8SV6N">
+      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
+    </form>
+  </div>
+</article>
+    
+      <article style="background: #316779">
+  <div class="shop-article-main">
+    <h4 style="color: #010101">Le pack.</h4>
+    
+      <div style="height:10px;background: #c5c0a2;"></div>
+    
+      <div style="height:10px;background: #010101;"></div>
+    
+    <div style="color: #c5c0a2">
+      <p class="shop-article-description"><small>Pour un prix plus intéressant, voici les deux derniers CD d’Etincelo, <strong>Unis à ta joie</strong> et <strong>L’Emmanuel est pour nous</strong>, réunis en un pack.</small>
+      <dl class="shop-article-properties">
+        <dt>Prix</dt>
+        <dd style="margin-left: 0">20€</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="shop-article-view">
+    <div class="picture-container">
+      <img src="/images/leepn-uatj.pack.png" alt="Le pack">
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <button style="background: #c5c0a2;color: #316779" type="submit">Ajouter à mon panier</button>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="JVTAM7ZCNJLVJ">
+      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
+    </form>
+  </div>
+</article>
+    
+      <article style="background: #daab70">
+  <div class="shop-article-main">
+    <h4 style="color: #bf4440">Ton amour pour moi.</h4>
+    
+      <div style="height:10px;background: #464152;"></div>
+    
+      <div style="height:10px;background: #bf4440;"></div>
+    
+    <div style="color: #464152">
+      <p class="shop-article-description"><small>À Noël 2013, Etincelo se lance dans la petite aventure «&nbsp;Ton Amour pour moi&nbsp;».<br>Avec ses 4 chants et ses bonus de Noël, ce petit EP sans prétention dévoile les racines du groupe.<br>Vous y retrouverez entre autres les chants <em>Les amis de Dieu</em> et <em>Bienheureuse Marie</em>.</small>
+      <dl class="shop-article-properties">
+        <dt>Prix</dt>
+        <dd style="margin-left: 0">4€</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="shop-article-view">
+    <div class="picture-container">
+      <img src="/images/tapm.artwork.png" alt="Ton amour pour moi">
+    </div>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <button style="background: #464152;color: #daab70" type="submit">Ajouter à mon panier</button>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="RGWLWRP8CWLAG">
+      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
+    </form>
+  </div>
+</article>
+    
   </section>
 
 </main>

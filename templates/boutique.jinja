@@ -1,0 +1,49 @@
+{% extends "base.jinja" %}
+
+{% block title %}Etincelo | Boutique{% endblock %}
+
+{% block style %}
+<style>
+article {
+  display: flex;
+  gap: 2em;
+}
+@media all and (max-width: 768px) {
+  article {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+.shop-article-view {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  padding: 4em 0;
+  align-items: center;
+}
+@media all and (max-width: 768px) {
+  .shop-article-view {
+    padding: 0 0 1em 0;
+  }
+}
+.shop-article-view .picture-container {
+  flex-grow: 1
+}
+.shop-article-view .picture-container img {
+  max-width: 100%
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <!--<h1>Enchantés, nous sommes Etincelo.</h1>-->
+      <p><small><em>Les frais de ports de votre commande sont inclus pour tout envoi vers la France ou la Belgique.</em></small>
+      <p><small><strong>NB: il n’y a pas besoin d’avoir un compte PayPal pour procéder au paiement.</strong></small>
+    </header>
+    {% for article in articles %}
+      {{ article['contents']|safe }}
+    {% endfor %}
+  </section>
+{% endblock %}
