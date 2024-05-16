@@ -17,7 +17,7 @@
       <img src="/images/tapm.artwork.png" alt="Ton amour pour moi">
     </div>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <button style="background: {{ item['palette'][0] }};color: {{ item['palette'][2] }}" type="submit">Ajouter à mon panier</button>
+      <button style="background: #aaa;color: #000" type="submit" disabled="disabled">En rupture de stock</button>
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="{{ item['button_id'] }}">
       <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
