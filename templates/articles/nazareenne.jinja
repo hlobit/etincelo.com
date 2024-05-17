@@ -1,0 +1,27 @@
+<article style="background: {{ item['palette'][2] }}">
+  <div class="shop-article-main">
+    <h4 style="color: {{ item['palette'][1] }}">Nazaréenne.</h4>
+    {% for color in item['palette'][0:2] %}
+      <div style="height:10px;background: {{ color }};"></div>
+    {% endfor %}
+    <div style="color: {{ item['palette'][0] }}">
+      <p class="shop-article-description"><small>Le nouvel album, dédié à Marie.<br/>La campagne de financement est terminée, et les premières livraisons vont être effectuées dans les prochaines semaines.<br/>Cela dit il est encore possible de soutenir ce projet en précommandant l’album et ses contreparties <a href="//ulule.com/etincelo-un-nouvel-album-avec-marie" target="_blank">sur Ulule <strong>tout au long du mois de mai</strong></a>.</small>
+      <!--<dl class="shop-article-properties">
+        <dt>Prix</dt>
+        <dd style="margin-left: 0">{{ item['price'] }}€</dd>
+      </dl>-->
+    </div>
+  </div>
+  <div class="shop-article-view">
+    <div class="picture-container">
+      <img src="/images/nazareenne.artwork.jpg" alt="Nazaréenne">
+    </div>
+    <a class="button" style="background: {{ item['palette'][0] }};color: {{ item['palette'][2] }}" href="//ulule.com/etincelo-un-nouvel-album-avec-marie" target="_blank">Précommander sur Ulule</a>
+    <!--<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <button style="background: {{ item['palette'][0] }};color: {{ item['palette'][2] }}" type="submit">Ajouter à mon panier</button>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="{{ item['button_id'] }}">
+      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1" border="0">
+    </form>-->
+  </div>
+</article>

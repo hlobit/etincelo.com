@@ -167,6 +167,13 @@ def main():
 
     items = [
         {
+            'button_id': 'HZVP6ZRBXVDYC',
+            'palette': palette('public/images/nazareenne.artwork.jpg'),
+            'template': 'articles/nazareenne.jinja',
+            'price': 20,
+            'available': False,
+        },
+        {
             'button_id': 'LKM9L3J27J3QC',
             'palette': palette('public/images/leepn.artwork.png'),
             'template': 'articles/leepn.jinja',
