@@ -4,6 +4,19 @@
 
 {% block style %}
 <style>
+@media print {
+ * {
+  background: none !important
+ }
+ article {
+  padding-left: 0;
+  padding-right: 0
+ }
+ body > header,
+ body > footer {
+  display: none
+ }
+}
 @media (prefers-color-scheme: dark) {
  .audio-button svg {
   fill: #fff;
