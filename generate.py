@@ -230,14 +230,16 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/parcours-nazareenne.html")
 
-    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=10, since_send_time='2023-10-04T00:00:00+00:00')
+    newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=10, since_send_time='2023-10-04T00:00:00+00:00',
+                                    match=lambda e: not e['settings']['subject_line'].startswith('Parcours de mai Nazaréenne'))
 
     output_from_parsed_template = env.get_template('index.jinja').render(selected='index', newsletters=newsletters)
     with open("public/index.html", "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", "public/index.html")
 
-    etince10_posts = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25, match=lambda e: e['settings']['title'].startswith('Jour '))
+    etince10_posts = fetch_newsletters(list_id=config['MAILCHIMP_CALENDAR_LIST_ID'], count=25,
+                                       match=lambda e: e['settings']['title'].startswith('Jour '))
     campaigns = {n['campaign_id']: n['id'] for n in etince10_posts}
     contents = {campaigns[campaign_id]: content for campaign_id, content in fetch_contents(*campaigns.keys())}
 
