@@ -170,7 +170,7 @@ def main():
             'button_id': 'HZVP6ZRBXVDYC',
             'palette': palette('public/images/nazareenne.artwork.jpg'),
             'template': 'articles/nazareenne.jinja',
-            'price': 20,
+            'price': 18,
             'available': False,
         },
         {
