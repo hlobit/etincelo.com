@@ -23,7 +23,7 @@ def resize(imgfile, basewidth=200):
     img = Image.open(imgfile, 'r')
     wpercent = (basewidth / float(img.size[0]))
     hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+    img = img.resize((basewidth, hsize), Image.Resampling.LANCZOS)
     return np.array(img)
 
 def hexify(palette):
