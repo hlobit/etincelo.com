@@ -125,7 +125,9 @@ def fetch_contents(*campaign_ids):
                 yield campaign_id, exc
 
 def main():
-    other_contents = [
+    static_contents = [
+        'qui-sommes-nous',
+        'francois-notre-frere',
         'message-20240407',
         'insta-20240408',
         'newsletter-20240430',
@@ -133,8 +135,8 @@ def main():
         'confirmation-commande',
     ]
 
-    for item in other_contents:
-        output_from_parsed_template = env.get_template(f'{item}.jinja').render()
+    for item in static_contents:
+        output_from_parsed_template = env.get_template(f'{item}.jinja').render(selected=item)
         with open(f'public/{item}.html', 'w') as f:
             f.write(output_from_parsed_template)
         print('Generated : ', f'public/{item}.html')
@@ -159,11 +161,6 @@ def main():
     with open(f'public/chants.html', "w") as f:
         f.write(output_from_parsed_template)
     print("Generated : ", f'public/chants.html')
-
-    output_from_parsed_template = env.get_template('qui-sommes-nous.jinja').render(selected='qui-sommes-nous')
-    with open("public/qui-sommes-nous.html", "w") as f:
-        f.write(output_from_parsed_template)
-    print("Generated : ", "public/qui-sommes-nous.html")
 
     items = [
         {
