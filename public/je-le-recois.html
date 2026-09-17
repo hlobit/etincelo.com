@@ -32,9 +32,6 @@
   article.highlight {
     background-color: beige;
   }
-  article p {
-    text-align: justify;
-  }
   footer a {
     color: #fff
   }
@@ -152,7 +149,10 @@
   }
   @media all and (max-width: 768px) {
     body {
-      font:1em sans-serif
+      font: 1em sans-serif
+    }
+    article p {
+      font: 1em serif
     }
     ul.etincelo-menu {
       flex-direction: column;
@@ -911,13 +911,14 @@ article.links ul {
 <footer>
   
   <section>
-    <p style="font-variant:small-caps">Quelques moyens pour soutenir notre mission</p>
-    <ul>
-      <li>Prier pour nous
-      <li>Faire un don pour financer notre projet en cours, <em><a href="francois-notre-frere.html">François notre frère</a></em>&nbsp;:<br/>IBAN: FR98 2004 1010 1111 4198 6Y03 270
-      <li>Acheter et offrir nos CD&nbsp;:<br><a href="https://boutique.etincelo.com" target="_blank">boutique.etincelo.com</a>
-      <li>S'abonner à notre newsletter et nos réseaux sociaux
-    </ul>
+    <article>
+      <p style="font-variant:small-caps">Quelques moyens pour nous soutenir</p>
+      <ul>
+        <li>Prier pour nous
+        <li>Acheter et offrir nos albums&nbsp;: <a href="https://boutique.etincelo.com" target="_blank">boutique.etincelo.com</a>
+        <li>S'abonner à notre newsletter et nos réseaux sociaux
+      </ul>
+    </article>
     <ul class="soc">
   <li>
     <a class="icon-8 email" href="mailto:contact@etincelo.com" target="_blank" title="Email">
