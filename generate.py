@@ -227,6 +227,25 @@ def main():
         f.write(output_from_parsed_template)
     print("Generated : ", "public/parcours-nazareenne.html")
 
+    templatepaths = templates.glob('neuvaine-francois/*.jinja')
+    neuvaine_posts = []
+    for item in sorted(templatepaths, reverse=True):
+        path = str(item).removeprefix('templates/')
+        contents = env.get_template(path).render()
+        date = item.stem
+        m = re.search('<h3>(.*)</h3>', contents)
+        title = m.group(1)
+        neuvaine_posts.append({
+            'id': date,
+            'send_time': datetime.strptime(date, '%Y%m%d').strftime('%d/%m/%Y'),
+            'subject': title,
+            'contents': contents,
+        })
+    output_from_parsed_template = env.get_template('neuvaine-francois.jinja').render(selected='neuvaine-francois', posts=neuvaine_posts)
+    with open("public/neuvaine-francois.html", "w") as f:
+        f.write(output_from_parsed_template)
+    print("Generated : ", "public/neuvaine-francois.html")
+
     newsletters = fetch_newsletters(list_id=config['MAILCHIMP_LIST_ID'], count=10, since_send_time='2023-10-04T00:00:00+00:00',
                                     match=lambda e: not e['settings']['subject_line'].startswith('Parcours de mai Nazaréenne'))
 

@@ -16,7 +16,10 @@
   nav {
     background: rgba(255,255,255,0.8);
   }
-  nav.secondary-nav {
+  nav.second-nav {
+    background: rgba(255,255,255,0.9);
+  }
+  nav.third-nav {
     background: rgba(255,255,255,1);
   }
   footer {
@@ -32,6 +35,9 @@
   article.highlight {
     background-color: beige;
   }
+  article.highlight.highlight-info {
+    background-color: #e1eaee;
+  }
   footer a {
     color: #fff
   }
@@ -42,7 +48,7 @@
     .has-background {
       background-image: unset;
     }
-    nav, nav.secondary-nav {
+    nav, nav.second-nav, nav.third-nav {
       background: rgba(0,0,0,0.9);
     }
     svg.etincelo-logo .etincelo-main {
@@ -60,6 +66,9 @@
     }
     article.highlight {
       background-color: #292929;
+    }
+    article.highlight.highlight-info {
+      background-color: #416677;
     }
     #inputEmail {
       background-color: #8a8a8a
@@ -114,7 +123,10 @@
     padding: 0;
     overflow: hidden;
   }
-  nav.secondary-nav ul.etincelo-menu {
+  nav.second-nav ul.etincelo-menu {
+    font-size: 0.9em;
+  }
+  nav.third-nav ul.etincelo-menu {
     font-size: 0.8em;
   }
   ul.etincelo-menu li a {
@@ -126,7 +138,10 @@
   ul.etincelo-menu li a {
     color: unset;
   }
-  nav.secondary-nav ul.etincelo-menu li a {
+  nav.second-nav ul.etincelo-menu li a {
+    padding: 8px 10px;
+  }
+  nav.third-nav ul.etincelo-menu li a {
     padding: 8px 10px;
   }
   ul.etincelo-menu li.active a {
@@ -314,10 +329,17 @@ article.video iframe {
       </ul>
     </section>
   </nav>
-  <nav class="secondary-nav">
+  <nav class="second-nav">
     <section>
       <ul class="etincelo-menu">
         <li class="active"><a href="francois-notre-frere.html">Album <em>François notre frère</em></a></li>
+      </ul>
+    </section>
+  </nav>
+  <nav class="third-nav">
+    <section>
+      <ul class="etincelo-menu">
+        <li class=""><a href="neuvaine-francois.html">Neuvaine <em>François notre frère</em></a></li>
         <li class=""><a href="parcours-nazareenne.html">Parcours <em>Nazaréenne</em></a></li>
         <li class=""><a href="calendrier.html">Parcours <em>Etince10</em></a></li>
       </ul>

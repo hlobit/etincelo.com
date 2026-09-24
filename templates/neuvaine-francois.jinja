@@ -1,0 +1,94 @@
+{% extends "base.jinja" %}
+
+{% block title %}Etincelo | Neuvaine François notre frère{% endblock %}
+
+{% block style %}
+<style>
+article.highlight-small {
+  font-size: 0.8em;
+}
+article.post {
+  border: 1px solid #ccc;
+  font-size: 0.8em;
+}
+article.post h3 {
+  font-size: 1.3em;
+  font-variant: small-caps;
+}
+article.post span.preamble {
+  font-size: 1.3em;
+  font-variant: small-caps;
+}
+article.post iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+article.post hr {
+  border-color: #eeeeee;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <article class="highlight highlight-small">
+      <h2>La neuvaine <em>François notre frère</em></h2>
+      <p>En cette <strong>annèe jubilaire franciscaine</strong>, nous fêtons les 800 ans de la <em>naissance au Ciel</em> de François d'Assise&nbsp;!
+      <p>Comment ne pas voir en François d’Assise un frère, un éclaireur&nbsp;? Promis aux ors du monde, il a préféré choisir la pauvreté. Il nous montre que l’amour, la fraternité, la <em>minorité</em> peuvent venir réparer ce qui est fragilisé, et l’emmener vers la paix et le bien.
+      <p>Pendant ces neuf prochains jours, nous vous proposons de plonger ensemble dans les grandes étapes de la vie de François, de saisir leur actualité, et de les laisser nous encourager vers la sainteté.
+    </article>
+    <article class="highlight highlight-info highlight-small">
+      <h3>Chaque jour, nous vous proposons de&nbsp;:</h3>
+      <ul>
+        <li>méditer <strong>une étape</strong> de sa vie
+        <li>dire <strong>la prière</strong> qu’il a lui-même dite <strong>devant le crucifix de Saint Damien</strong>, pour désirer la volonté de Dieu
+        <li>écouter <strong>un chant franciscain</strong> avec François, notre frère
+      </ul>
+      <p>Pace e bene&nbsp;!
+    </article>
+  </section>
+  <section>
+    <article id="newsletters">
+    <ul id="posts">
+      {% for post in posts %}
+      <li>
+        <a href="#{{ post['id'] }}" onclick="event.preventDefault();history.pushState({}, '', '#{{ post['id'] }}');document.getElementById('{{ post['id'] }}').scrollIntoView({behavior: 'smooth'});">
+          <p class="date type">{{ post['send_time'] }}</p>
+          <p class="subtitle">{{ post['subject'] }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    </article>
+  </section>
+  <section>
+    {% for post in posts %}
+      <article class="post" id="{{ post['id'] }}">
+        {{ post['contents']|safe }}
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}
+
+{% block script %}
+<script>
+  (function () {
+    const targetDates = ['20260925', '20260926', '20260927', '20260928', '20260929', '20260930', '20261001', '20261002', '20261003'];
+
+    // Format today's date as YYYYMMDD in the user's local time
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const today = `${yyyy}${mm}${dd}`;
+
+    if (targetDates.includes(today)) {
+      const item = today;
+      const el = document.getElementById(item);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  })();
+</script>
+{% endblock %}
