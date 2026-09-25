@@ -1,11 +1,11 @@
 <article style="background: {{ item['palette'][2] }}">
   <div class="shop-article-main">
-    <h4 style="color: {{ item['palette'][1] }}">Nazaréenne.</h4>
+    <h4 style="color: {{ item['palette'][1] }}">François notre frère.</h4>
     {% for color in item['palette'][0:2] %}
       <div style="height:10px;background: {{ color }};"></div>
     {% endfor %}
     <div style="color: {{ item['palette'][0] }}">
-      <p class="shop-article-description"><small>En 2024, nous sentions l'appel de proposer un album dédié à Marie.<br/>Fidèles à notre histoire tout en tournant une page, nous vous apportons un album de louange à la fois très surprenant et très priant, qui "Marie" des ambiances progressives, des touches pop, des teintes indé-folk, avec des textes et des mélodies dans la continuité de l'univers d'Etincelo.</small>
+      <p class="shop-article-description"><small>Le nouvel album, sur des textes de François et Claire d'Assise, en collaboration avec <a target="_blank" href="https://reparemoneglise.com/musique/francois-notre-frere/">Répare mon Église</a>.<br/>L'année jubilaire franciscaine ne semblait pas pouvoir être vécue sans musique, ni pour Etincelo, ni pour Répare mon Église. Nous nous sommes retrouvés au même endroits, au même moment, avec le même désir&nbsp;; comme si cet album ne pouvait être réalisé sans ce sens de la fraternité si cher à François&nbsp;!</small>
       <dl class="shop-article-properties">
         <dt>Prix</dt>
         <dd style="margin-left: 0">{{ item['price'] }}€</dd>
@@ -14,7 +14,7 @@
   </div>
   <div class="shop-article-view">
     <div class="picture-container">
-      <img src="/images/nazareenne.artwork.jpg" alt="Nazaréenne">
+      <img src="/images/fnf.artwork.jpg" alt="François notre frère">
     </div>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <button style="background: {{ item['palette'][0] }};color: {{ item['palette'][2] }}" type="submit">Ajouter à mon panier</button>

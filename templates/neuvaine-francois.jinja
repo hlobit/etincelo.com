@@ -35,9 +35,7 @@ article.post hr {
       <h2>La neuvaine <em>François notre frère</em></h2>
       <p>En cette <strong>annèe jubilaire franciscaine</strong>, nous fêtons les 800 ans de la <em>naissance au Ciel</em> de François d'Assise&nbsp;!
       <p>Comment ne pas voir en François d’Assise un frère, un éclaireur&nbsp;? Promis aux ors du monde, il a préféré choisir la pauvreté. Il nous montre que l’amour, la fraternité, la <em>minorité</em> peuvent venir réparer ce qui est fragilisé, et l’emmener vers la paix et le bien.
-      <p>Pendant ces neuf prochains jours, nous vous proposons de plonger ensemble dans les grandes étapes de la vie de François, de saisir leur actualité, et de les laisser nous encourager vers la sainteté.
-    </article>
-    <article class="highlight highlight-info highlight-small">
+      <p>Pendant ces neuf prochains jours, <strong>à partir du vendredi 25 septembre</strong>, nous vous proposons de plonger ensemble dans les grandes étapes de la vie de François, de saisir leur actualité, et de les laisser nous encourager vers la sainteté.
       <h3>Chaque jour, nous vous proposons de&nbsp;:</h3>
       <ul>
         <li>méditer <strong>une étape</strong> de sa vie
@@ -49,6 +47,25 @@ article.post hr {
   </section>
   <section>
     <article id="newsletters">
+    <h3>Pour recevoir la neuvaine chaque jour par email&nbsp;:</h3>
+    <form id="newsletter" name="contact" method="POST" data-netlify="true" action="/api/newsletter-subscribe">
+      <div class="field grow">
+        <div class="control">
+          <input id="inputEmail" class="input" type="email" name="email" placeholder="Entrez votre adresse email pour vous inscrire..." autocomplete="off">
+        </div>
+      </div>
+      <div class="field" aria-hidden="true">
+        <div class="control">
+          <input id="inputVerifyEmail" type="text" name="verifyEmail" placeholder="Verify email" tabindex="-1" value="" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button id="button" type="submit" class="button is-primary">Envoyer</button>
+        </div>
+      </div>
+    </form>
+    <p><a href="documents/neuvaine-francois-notre-frere.pdf">📥 Télécharger la neuvaine en PDF</a>
     <ul id="posts">
       {% for post in posts %}
       <li>
@@ -90,5 +107,34 @@ article.post hr {
       }
     }
   })();
+</script>
+<script>
+  var form = document.getElementById('newsletter');
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var email = document.getElementById('inputEmail').value;
+    var segment = 'neuvaine-francois';
+    var verifyEmail = document.getElementById('inputVerifyEmail').value;
+    if (verifyEmail) {
+      return false;
+    }
+    submitSubscription({email, segment})
+  });
+
+  function submitSubscription(data) {
+    fetch(form.action, {
+      method: form.method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      var submitButton = document.getElementById('button');
+      submitButton.innerText = 'Envoyé !'
+      document.getElementById('inputEmail').value = '';
+      submitButton.disabled = true
+    });
+  };
 </script>
 {% endblock %}

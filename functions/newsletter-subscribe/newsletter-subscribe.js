@@ -15,7 +15,7 @@ const {
 exports.handler = async event => {
   try {
     const { email, segment } = JSON.parse(event.body);
-    const listId = segment === 'calendar' ? MAILCHIMP_CALENDAR_LIST_ID : MAILCHIMP_LIST_ID
+    const listId = segment === 'neuvaine-francois' ? MAILCHIMP_CALENDAR_LIST_ID : MAILCHIMP_LIST_ID
     console.log('LIST_ID: ' + listId);
     const subscriber = {
       email_address: email,

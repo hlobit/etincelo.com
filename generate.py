@@ -164,39 +164,40 @@ def main():
 
     items = [
         {
+            'button_id': '9EFG3623PLFGN',
+            'palette': palette('public/images/fnf.artwork.jpg'),
+            'template': 'articles/fnf.jinja',
+            'price': 18,
+        },
+        {
             'button_id': 'HZVP6ZRBXVDYC',
             'palette': palette('public/images/nazareenne.artwork.jpg'),
             'template': 'articles/nazareenne.jinja',
             'price': 18,
-            'available': False,
         },
         {
             'button_id': 'LKM9L3J27J3QC',
             'palette': palette('public/images/leepn.artwork.png'),
             'template': 'articles/leepn.jinja',
             'price': 8,
-            'available': True,
         },
         {
             'button_id': 'Z54DR2AW8SV6N',
             'palette': palette('public/images/uatj.artwork.png'),
             'template': 'articles/uatj.jinja',
             'price': 15,
-            'available': True,
         },
         {
             'button_id': 'JVTAM7ZCNJLVJ',
             'palette': [c[:7] for c in palette('public/images/leepn-uatj.pack.png')],
             'template': 'articles/leepn-uatj.jinja',
             'price': 20,
-            'available': True,
         },
         {
             'button_id': 'RGWLWRP8CWLAG',
             'palette': palette('public/images/tapm.artwork.png'),
             'template': 'articles/tapm.jinja',
             'price': 4,
-            'available': False,
         }
     ]
     articles = []
