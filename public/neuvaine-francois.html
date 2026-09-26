@@ -400,6 +400,13 @@ article.post hr {
         </a>
       </li>
       
+      <li>
+        <a href="#20260927" onclick="event.preventDefault();history.pushState({}, '', '#20260927');document.getElementById('20260927').scrollIntoView({behavior: 'smooth'});">
+          <p class="date type">27/09/2026</p>
+          <p class="subtitle">Jour 3&nbsp;: Oser «&nbsp;poser&nbsp;» la pierre angulaire</p>
+        </a>
+      </li>
+      
     </ul>
     </article>
   </section>
@@ -471,6 +478,41 @@ Ta volonté sainte qui ne saurait m'égarer
 <div><iframe width="100%" src="https://www.youtube-nocookie.com/embed/sR1eML931Og" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       </article>
     
+      <article class="post" id="20260927">
+        <div style="text-align: center">
+  <img loading="lazy" style="height: 300px; max-width: 100%" src="images/neuvaine-francois/3.jpg" /></a>
+</div>
+
+<h3>Jour 3&nbsp;: Oser «&nbsp;poser&nbsp;» la pierre angulaire</h3>
+
+<p><strong><span class="preamble">Le Seigneur nous a fait</span> pour contempler et pour agir. Il nous envoie aujourd’hui, son Esprit de «&nbsp;contemplaction&nbsp;», l’Esprit qui traduit la parole de Dieu en actes - et inversement.</strong>
+
+<p>Chaque jour un peu plus, une grande douceur se dévoilait à François, à travers son immense désir de servir et d’écouter le Seigneur.
+<p>Assoiffé de découvrir sa volonté sainte, il se rendait, poussé par l’Esprit, en des lieux reculés autour d’Assise, en des lieux où il se sentait emmené dans les profondeurs de la prière et la contemplation.
+<p>Ainsi fut-il conduit un jour vers San Damiano, où se trouvait une église en ruine, sur un terrain en friche&nbsp;; il vit au centre de l’église un imposant crucifix, au regard poignant. Il reconnut dans cette ruine son propre cœur délabré, sous le regard aimant du Christ, si bien que des larmes vinrent à ses yeux… quand il entendit par trois fois ce retentissant appel : <em>«&nbsp;François, va et répare mon église&nbsp;!&nbsp;»</em>
+<p>Réparer cette église&nbsp;! Restaurer son cœur devant le Seigneur&nbsp;! Dans l’oreille de François, à ce moment précis, il s’agit d’un même acte.
+<p>La fougue lui vient. Il a compris une chose du Seigneur, et il n’attend pas pour poser la première pierre de ce travail titanesque, même s’il ne sait pas encore que le retentissement de cet appel s’étend déjà à l’Église universelle.
+
+
+<article class="highlight highlight-info" style="text-align:center">
+<h4>Notre Père</h4>
+<h4>Je vous salue Marie</h4>
+<h4>Gloire au Père</h4>
+<h4 style="margin-bottom:0.5em">Prière de François devant le crucifix de Saint Damien</h4>
+<p style="margin-top:0.5em">Dieu très haut et glorieux<br>
+Viens éclairer les ténèbres de mon cœur<br>
+Donne-moi une foi droite<br>
+Une espérance solide<br>
+Et une parfaite charité
+<p>Donne-moi de sentir et de connaître<br>
+Afin que je puisse l'accomplir<br>
+Ta volonté sainte qui ne saurait m'égarer
+</article>
+
+<h3>🎶 Dieu très haut (Etincelo)</h3>
+<div><iframe width="100%" src="https://www.youtube-nocookie.com/embed/AeUTC9eyFiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      </article>
+    
   </section>
 
 </main>
@@ -534,6 +576,11 @@ Ta volonté sainte qui ne saurait m'égarer
 <script>
   (function () {
     const targetDates = ['20260925', '20260926', '20260927', '20260928', '20260929', '20260930', '20261001', '20261002', '20261003'];
+
+    // If hash is already one of these, don't do the autoscroll
+    if (window.location.hash && window.location.hash.startsWith('#') && targetDates.includes(window.location.hash.substring(1))) {
+      return;
+    }
 
     // Format today's date as YYYYMMDD in the user's local time
     const now = new Date();

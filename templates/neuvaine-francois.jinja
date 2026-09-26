@@ -92,6 +92,11 @@ article.post hr {
   (function () {
     const targetDates = ['20260925', '20260926', '20260927', '20260928', '20260929', '20260930', '20261001', '20261002', '20261003'];
 
+    // If hash is already one of these, don't do the autoscroll
+    if (window.location.hash && window.location.hash.startsWith('#') && targetDates.includes(window.location.hash.substring(1))) {
+      return;
+    }
+
     // Format today's date as YYYYMMDD in the user's local time
     const now = new Date();
     const yyyy = now.getFullYear();
