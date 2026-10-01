@@ -33,6 +33,7 @@
                 python-pkgs.pillow
                 python-pkgs.scikit-learn
               ]))
+              pkgs.imagemagick
               pkgs.netlify-cli
               #nodejs
               #(pkgs.netlify-cli.override (old: {
